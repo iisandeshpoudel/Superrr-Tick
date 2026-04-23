@@ -228,13 +228,16 @@
 
   function buildReportBody(dimension, fromDate, endDate, timeScale, siteId) {
     const body = {
-      dimension,
       reportSetting: {
         fromDate,
         endDate,
         timeScale
       }
     };
+
+    if (dimension != null) {
+      body.dimension = dimension;
+    }
 
     if (siteId) {
       body.siteIds = [siteId];
@@ -265,14 +268,17 @@
     return out;
   }
 
-  function buildSheetRows({ summaryJson, startDate, timeScale }) {
+  function buildSheetRows({ countJson, summaryJson, startDate, timeScale }) {
+    const countSeries = Array.isArray(countJson?.series) ? countJson.series : [];
     const summarySeries = Array.isArray(summaryJson?.series) ? summaryJson.series : [];
+    const swapCount = sumSeriesValues(countSeries, "swapCount");
     const socBelowNinetyCount = sumSeriesValues(summarySeries, "socBelowNinetyCount");
     const socBelowEightyFiveCount = sumSeriesValues(summarySeries, "socBelowEightyFiveCount");
     const socBelowEightyCount = sumSeriesValues(summarySeries, "socBelowEightyCount");
     const totalAh = sumSeriesValues(summarySeries, "totalAh");
 
     const rowCount = Math.max(
+      swapCount.length,
       socBelowNinetyCount.length,
       socBelowEightyFiveCount.length,
       socBelowEightyCount.length,
@@ -284,6 +290,7 @@
       const bucketDate = addBucketDate(startDate, timeScale, i);
       rows.push({
         date: formatBucketDate(bucketDate, timeScale),
+        swapCount: swapCount[i] ?? null,
         socBelowNinetyCount: socBelowNinetyCount[i] ?? null,
         socBelowEightyFiveCount: socBelowEightyFiveCount[i] ?? null,
         socBelowEightyCount: socBelowEightyCount[i] ?? null,
@@ -294,15 +301,17 @@
     return rows;
   }
 
-  function createSheet(name, rows) {
+  function createSheet(name, rows, options = {}) {
     return {
       name,
+      kind: options.kind || "site",
       columns: [
-        { key: "date", label: "date" },
-        { key: "socBelowNinetyCount", label: "socBelowNinetyCount" },
-        { key: "socBelowEightyFiveCount", label: "socBelowEightyFiveCount" },
-        { key: "socBelowEightyCount", label: "socBelowEightyCount" },
-        { key: "totalAh", label: "totalAh" }
+        { key: "date", label: "Date", width: 14 },
+        { key: "swapCount", label: "Swap Count", width: 12 },
+        { key: "socBelowNinetyCount", label: "SOC < 90%", width: 14 },
+        { key: "socBelowEightyFiveCount", label: "SOC < 85%", width: 14 },
+        { key: "socBelowEightyCount", label: "SOC < 80%", width: 14 },
+        { key: "totalAh", label: "Total Ah", width: 14 }
       ],
       rows
     };
@@ -310,7 +319,7 @@
 
   async function buildWorkbookModel(settings) {
     const selectedMode = String(settings?.timeScale || "day");
-    const timeScale = selectedMode === "custom" ? "day" : selectedMode;
+    const timeScale = selectedMode === "custom" || selectedMode === "month" ? "day" : selectedMode;
     const startDateText = settings?.startDate;
     const endDateText = settings?.endDate;
     const timezoneHeader = settings?.timezoneHeader || DEFAULT_TIMEZONE_HEADER;
@@ -335,6 +344,11 @@
     const startDate = new Date(startEpoch * 1000);
 
     await onProgress({ stage: "fetch-total", percent: 18, message: "Fetching total summary" });
+    const totalCountJson = await fetchReport(
+      "swap-count",
+      buildReportBody(4, startEpoch, endEpoch, timeScale),
+      timezoneHeader
+    );
     const totalSummaryJson = await fetchReport(
       "swap-summary",
       buildReportBody(4, startEpoch, endEpoch, timeScale),
@@ -345,7 +359,8 @@
     sheets.push(
       createSheet(
         sanitizeSheetName("Total", usedNames, "Total"),
-        buildSheetRows({ summaryJson: totalSummaryJson, startDate, timeScale })
+        buildSheetRows({ countJson: totalCountJson, summaryJson: totalSummaryJson, startDate, timeScale }),
+        { kind: "total" }
       )
     );
 
@@ -364,16 +379,24 @@
           siteName
         });
 
-        const summaryJson = await fetchReport(
-          "swap-summary",
-          buildReportBody(4, startEpoch, endEpoch, timeScale, siteId),
-          timezoneHeader
-        );
+        const [countJson, summaryJson] = await Promise.all([
+          fetchReport(
+            "swap-count",
+            buildReportBody(2, startEpoch, endEpoch, timeScale, siteId),
+            timezoneHeader
+          ),
+          fetchReport(
+            "swap-summary",
+            buildReportBody(4, startEpoch, endEpoch, timeScale, siteId),
+            timezoneHeader
+          )
+        ]);
 
         sheets.push(
           createSheet(
             sanitizeSheetName(siteName, usedNames, siteId),
-            buildSheetRows({ summaryJson, startDate, timeScale })
+            buildSheetRows({ countJson, summaryJson, startDate, timeScale }),
+            { kind: "site" }
           )
         );
 
@@ -390,7 +413,8 @@
         sheets.push(
           createSheet(
             sanitizeSheetName(siteName, usedNames, siteId),
-            []
+            [],
+            { kind: "site" }
           )
         );
         await onProgress({

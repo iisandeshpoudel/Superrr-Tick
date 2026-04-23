@@ -88,6 +88,85 @@
     return `    <c r="${reference}" t="inlineStr"><is><t xml:space="preserve">${text}</t></is></c>`;
   }
 
+  function xmlCellWithStyle(reference, value, styleIndex) {
+    const styleAttr = Number.isInteger(styleIndex) ? ` s="${styleIndex}"` : "";
+
+    if (value == null || value === "") {
+      return `    <c r="${reference}"${styleAttr}/>`;
+    }
+
+    if (typeof value === "number" && Number.isFinite(value)) {
+      return `    <c r="${reference}"${styleAttr}><v>${String(value)}</v></c>`;
+    }
+
+    const text = escapeXml(value);
+    return `    <c r="${reference}"${styleAttr} t="inlineStr"><is><t xml:space="preserve">${text}</t></is></c>`;
+  }
+
+  function columnLetter(index) {
+    let n = index;
+    let name = "";
+    while (n > 0) {
+      const rem = (n - 1) % 26;
+      name = String.fromCharCode(65 + rem) + name;
+      n = Math.floor((n - 1) / 26);
+    }
+    return name;
+  }
+
+  function buildCellRef(colIndex, rowIndex) {
+    return `${columnLetter(colIndex + 1)}${rowIndex + 1}`;
+  }
+
+  function escapeSheetText(text) {
+    return escapeXml(text).replace(/"/g, '&quot;');
+  }
+
+  function buildColXml(columns) {
+    const widths = columns.map((column) => Number(column?.width) || 12);
+    const cols = widths.map((width, index) => {
+      const min = index + 1;
+      const max = index + 1;
+      return `    <col min="${min}" max="${max}" width="${width}" customWidth="1"/>`;
+    });
+    return `  <cols>\n${cols.join("\n")}\n  </cols>`;
+  }
+
+  function buildSheetViewXml() {
+    return `  <sheetViews>\n    <sheetView workbookViewId="0" tabSelected="1">\n      <pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/>\n      <selection pane="bottomLeft" activeCell="A2" sqref="A2"/>\n    </sheetView>\n  </sheetViews>`;
+  }
+
+  function buildAutoFilterRef(columns, rowCount) {
+    if (!columns.length || rowCount < 1) {
+      return "";
+    }
+    const lastCol = columnLetter(columns.length);
+    return `A1:${lastCol}${rowCount + 1}`;
+  }
+
+  function headerStyleForColumn(columnKey) {
+    switch (columnKey) {
+      case "date":
+        return 2;
+      case "swapCount":
+        return 3;
+      case "socBelowNinetyCount":
+        return 4;
+      case "socBelowEightyFiveCount":
+        return 5;
+      case "socBelowEightyCount":
+        return 6;
+      case "totalAh":
+        return 7;
+      default:
+        return 2;
+    }
+  }
+
+  function dataStyleForValue(value) {
+    return typeof value === "number" && Number.isFinite(value) ? 1 : 0;
+  }
+
   function buildWorksheetXml(sheet) {
     const columns = sheet.columns || [];
     const rows = Array.isArray(sheet.rows) ? sheet.rows : [];
@@ -104,14 +183,20 @@
     }
 
     const rowXml = allRows.map((row, rowIndex) => {
+      const isHeader = rowIndex === 0;
       const cells = columns.map((column, columnIndex) => {
-        const reference = `${columnName(columnIndex + 1)}${rowIndex + 1}`;
-        return xmlCell(reference, row[column.key]);
+        const reference = buildCellRef(columnIndex, rowIndex);
+        const styleIndex = isHeader ? headerStyleForColumn(column.key) : dataStyleForValue(row[column.key]);
+        return xmlCellWithStyle(reference, row[column.key], styleIndex);
       });
-      return `  <row r="${rowIndex + 1}">\n${cells.join("\n")}\n  </row>`;
+      return `  <row r="${rowIndex + 1}">
+${cells.join("\n")}
+  </row>`;
     });
 
-    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">\n  <sheetData>\n${rowXml.join("\n")}\n  </sheetData>\n</worksheet>`;
+    const autoFilterRef = buildAutoFilterRef(columns, rows.length);
+
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">\n${buildSheetViewXml()}\n${buildColXml(columns)}\n  <sheetData>\n${rowXml.join("\n")}\n  </sheetData>${autoFilterRef ? `\n  <autoFilter ref="${autoFilterRef}"/>` : ""}\n</worksheet>`;
   }
 
   function buildWorkbookXml(sheets) {
@@ -149,8 +234,83 @@
     return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">\n  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>\n  <Default Extension="xml" ContentType="application/xml"/>\n  <Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>\n  <Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>\n  <Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>\n  <Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>\n${overrides.join("\n")}\n</Types>`;
   }
 
+  function buildStylesXmlV2() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+  <fonts count="3">
+    <font>
+      <sz val="11"/>
+      <color rgb="FF111111"/>
+      <name val="Calibri"/>
+      <family val="2"/>
+    </font>
+    <font>
+      <sz val="11"/>
+      <color rgb="FFFFFFFF"/>
+      <name val="Calibri"/>
+      <family val="2"/>
+      <b/>
+    </font>
+    <font>
+      <sz val="11"/>
+      <color rgb="FF111111"/>
+      <name val="Calibri"/>
+      <family val="2"/>
+      <b/>
+    </font>
+  </fonts>
+  <fills count="9">
+    <fill><patternFill patternType="none"/></fill>
+    <fill><patternFill patternType="gray125"/></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFFFFFFF"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FF111111"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFFF5D2D"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFF7C948"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FF2358FF"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FF27A844"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FF7B61FF"/><bgColor indexed="64"/></patternFill></fill>
+  </fills>
+  <borders count="2">
+    <border><left/><right/><top/><bottom/><diagonal/></border>
+    <border><left style="thin"><color rgb="FF111111"/></left><right style="thin"><color rgb="FF111111"/></right><top style="thin"><color rgb="FF111111"/></top><bottom style="thin"><color rgb="FF111111"/></bottom><diagonal/></border>
+  </borders>
+  <cellStyleXfs count="1">
+    <xf numFmtId="0" fontId="0" fillId="0" borderId="0"/>
+  </cellStyleXfs>
+  <cellXfs count="8">
+    <xf numFmtId="0" fontId="0" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+      <alignment horizontal="left" vertical="center"/>
+    </xf>
+    <xf numFmtId="0" fontId="0" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+      <alignment horizontal="right" vertical="center"/>
+    </xf>
+    <xf numFmtId="0" fontId="1" fillId="3" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+      <alignment horizontal="center" vertical="center"/>
+    </xf>
+    <xf numFmtId="0" fontId="2" fillId="4" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+      <alignment horizontal="center" vertical="center"/>
+    </xf>
+    <xf numFmtId="0" fontId="2" fillId="5" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+      <alignment horizontal="center" vertical="center"/>
+    </xf>
+    <xf numFmtId="0" fontId="1" fillId="6" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+      <alignment horizontal="center" vertical="center"/>
+    </xf>
+    <xf numFmtId="0" fontId="2" fillId="7" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+      <alignment horizontal="center" vertical="center"/>
+    </xf>
+    <xf numFmtId="0" fontId="1" fillId="8" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+      <alignment horizontal="center" vertical="center"/>
+    </xf>
+  </cellXfs>
+  <cellStyles count="1">
+    <cellStyle name="Normal" xfId="0" builtinId="0"/>
+  </cellStyles>
+</styleSheet>`;
+  }
+
   function buildStylesXml() {
-    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">\n  <fonts count="1">\n    <font>\n      <sz val="11"/>\n      <color theme="1"/>\n      <name val="Calibri"/>\n      <family val="2"/>\n      <scheme val="minor"/>\n    </font>\n  </fonts>\n  <fills count="2">\n    <fill><patternFill patternType="none"/></fill>\n    <fill><patternFill patternType="gray125"/></fill>\n  </fills>\n  <borders count="1">\n    <border><left/><right/><top/><bottom/><diagonal/></border>\n  </borders>\n  <cellStyleXfs count="1">\n    <xf numFmtId="0" fontId="0" fillId="0" borderId="0"/>\n  </cellStyleXfs>\n  <cellXfs count="1">\n    <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>\n  </cellXfs>\n  <cellStyles count="1">\n    <cellStyle name="Normal" xfId="0" builtinId="0"/>\n  </cellStyles>\n</styleSheet>`;
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">\n  <fonts count="2">\n    <font>\n      <sz val="11"/>\n      <color rgb="FFFFFFFF"/>\n      <name val="Calibri"/>\n      <family val="2"/>\n      <b/>\n    </font>\n    <font>\n      <sz val="11"/>\n      <color rgb="FF111111"/>\n      <name val="Calibri"/>\n      <family val="2"/>\n    </font>\n  </fonts>\n  <fills count="5">\n    <fill><patternFill patternType="none"/></fill>\n    <fill><patternFill patternType="gray125"/></fill>\n    <fill><patternFill patternType="solid"><fgColor rgb="FFFF5D2D"/><bgColor indexed="64"/></patternFill></fill>\n    <fill><patternFill patternType="solid"><fgColor rgb="FFF7C948"/><bgColor indexed="64"/></patternFill></fill>\n    <fill><patternFill patternType="solid"><fgColor rgb="FF2358FF"/><bgColor indexed="64"/></patternFill></fill>\n  </fills>\n  <borders count="4">\n    <border><left/><right/><top/><bottom/><diagonal/></border>\n    <border><left style="thin"><color rgb="FF111111"/></left><right style="thin"><color rgb="FF111111"/></right><top style="thin"><color rgb="FF111111"/></top><bottom style="thin"><color rgb="FF111111"/></bottom><diagonal/></border>\n    <border><left style="medium"><color rgb="FF111111"/></left><right style="medium"><color rgb="FF111111"/></right><top style="medium"><color rgb="FF111111"/></top><bottom style="medium"><color rgb="FF111111"/></bottom><diagonal/></border>\n    <border><left style="thin"><color rgb="FF111111"/></left><right style="thin"><color rgb="FF111111"/></right><top style="thin"><color rgb="FF111111"/></top><bottom style="thin"><color rgb="FF111111"/></bottom><diagonal/></border>\n  </borders>\n  <cellStyleXfs count="1">\n    <xf numFmtId="0" fontId="0" fillId="0" borderId="0"/>\n  </cellStyleXfs>\n  <cellXfs count="10">\n    <xf numFmtId="0" fontId="1" fillId="0" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">\n      <alignment horizontal="center" vertical="center"/>\n    </xf>\n    <xf numFmtId="0" fontId="1" fillId="0" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">\n      <alignment horizontal="left" vertical="center"/>\n    </xf>\n    <xf numFmtId="0" fontId="1" fillId="0" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">\n      <alignment horizontal="right" vertical="center"/>\n    </xf>\n    <xf numFmtId="0" fontId="0" fillId="2" borderId="2" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">\n      <alignment horizontal="center" vertical="center"/>\n    </xf>\n    <xf numFmtId="0" fontId="0" fillId="2" borderId="2" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">\n      <alignment horizontal="left" vertical="center"/>\n    </xf>\n    <xf numFmtId="0" fontId="0" fillId="2" borderId="2" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">\n      <alignment horizontal="right" vertical="center"/>\n    </xf>\n    <xf numFmtId="0" fontId="1" fillId="3" borderId="3" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">\n      <alignment horizontal="center" vertical="center"/>\n    </xf>\n    <xf numFmtId="0" fontId="1" fillId="4" borderId="3" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">\n      <alignment horizontal="center" vertical="center"/>\n    </xf>\n    <xf numFmtId="0" fontId="1" fillId="0" borderId="3" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">\n      <alignment horizontal="center" vertical="center"/>\n    </xf>\n    <xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">\n      <alignment horizontal="left" vertical="center"/>\n    </xf>\n  </cellXfs>\n  <cellStyles count="1">\n    <cellStyle name="Normal" xfId="0" builtinId="0"/>\n  </cellStyles>\n</styleSheet>`;
   }
 
   function buildCoreXml({ title, creator, description, createdAt }) {
@@ -241,7 +401,7 @@
     entries.push({ name: "docProps/app.xml", data: utf8Bytes(buildAppXml(safeSheets)) });
     entries.push({ name: "xl/workbook.xml", data: utf8Bytes(buildWorkbookXml(safeSheets)) });
     entries.push({ name: "xl/_rels/workbook.xml.rels", data: utf8Bytes(buildWorkbookRelsXml(safeSheets.length)) });
-    entries.push({ name: "xl/styles.xml", data: utf8Bytes(buildStylesXml()) });
+    entries.push({ name: "xl/styles.xml", data: utf8Bytes(buildStylesXmlV2()) });
 
     safeSheets.forEach((sheet, index) => {
       entries.push({

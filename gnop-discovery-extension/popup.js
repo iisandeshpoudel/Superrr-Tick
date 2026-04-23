@@ -213,8 +213,8 @@ async function downloadWorkbook() {
 
   const activeContext = await getActiveReportContext();
   const selectedTimeScale = mode === "custom" ? "custom" : (timeScale || activeContext.timeScale || "day");
-  const reportFromDate = activeContext.fromDate || startDate;
-  const reportEndDate = activeContext.endDate || endDate;
+  const reportFromDate = mode === "custom" ? startDate : (activeContext.fromDate || startDate);
+  const reportEndDate = mode === "custom" ? endDate : (activeContext.endDate || endDate);
   setBusy(true);
   setProgress("starting", 1, "Starting export");
 
