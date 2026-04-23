@@ -1,0 +1,258 @@
+{
+  "exportedAt": "2026-04-23T05:10:59.612Z",
+  "exportedAtEpochMs": 1776921059612,
+  "extension": {
+    "name": "GNOP Discovery Capture",
+    "version": "0.1.0"
+  },
+  "captureConfig": {
+    "enabled": true,
+    "maxEvents": 2500,
+    "onlyDashboardDefaultDate": true,
+    "totalMeansNoSiteSelection": true
+  },
+  "summary": {
+    "totalEvents": 2,
+    "byEndpoint": {
+      "dashboard": 2
+    },
+    "byScopeType": {
+      "total": 2
+    }
+  },
+  "samples": {
+    "dashboard": {
+      "total": {
+        "capturedAt": "2026-04-23T05:10:31.462Z",
+        "capturedAtEpochMs": 1776921031462,
+        "endpoint": {
+          "key": "dashboard",
+          "method": "POST",
+          "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/dashboard"
+        },
+        "error": null,
+        "id": "evt_1776921031462_erf25w",
+        "page": {
+          "scope": {
+            "scopeType": "total",
+            "siteId": "",
+            "siteName": "ALL_SITES",
+            "siteRid": ""
+          },
+          "title": "GNOP - GoStation Statistics",
+          "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/dashboard?"
+        },
+        "request": {
+          "bodyJson": {
+            "endDate": 1776881699,
+            "fromDate": 1776795300
+          },
+          "bodyText": null,
+          "headers": {
+            "accept": "application/json, text/plain, */*",
+            "client": "gnop",
+            "content-type": "application/json",
+            "enop-sub": "gnop",
+            "language": "en-US",
+            "timezone": "+05:45"
+          }
+        },
+        "response": {
+          "bodyJson": {
+            "availableVm": 45,
+            "batteryInVmCount": 302,
+            "batteryTotalCount": 1295,
+            "constructionVmCount": 0,
+            "inserviceVmCount": 45,
+            "lastUpdateTime": 1776921031,
+            "maintenanceVmCount": 0,
+            "socBelowEightyCount": 265,
+            "socBelowEightyFiveCount": 336,
+            "socBelowNinetyCount": 514,
+            "swapCount": 1602,
+            "totalAh": 29325,
+            "totalKm": 0,
+            "totalPowerCapacity": 183480,
+            "utilization": 16
+          },
+          "bodyText": null,
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-origin": "*",
+            "content-language": "en-US",
+            "content-length": "335",
+            "content-type": "application/json; charset=utf-8",
+            "date": "Thu, 23 Apr 2026 05:10:30 GMT",
+            "etag": "W/\"14f-HMFZN+l9bwwmuBFz/o4QfbZABpY\"",
+            "x-powered-by": "Express"
+          },
+          "ok": true,
+          "status": 200
+        },
+        "timing": {
+          "finishedAtEpochMs": 1776921031407,
+          "startedAtEpochMs": 1776921030966
+        },
+        "transport": "xhr"
+      },
+      "site": null
+    }
+  },
+  "pageMetaByTabId": {
+    "1306652867": {
+      "pageUrl": "https://gnop.nebula.gogoro.com/report/gs-statistic/dashboard?",
+      "seenAt": "2026-04-23T05:10:40.279Z",
+      "timezone": "Asia/Katmandu",
+      "timezoneOffsetMinutes": -345,
+      "title": "GNOP - GoStation Statistics"
+    }
+  },
+  "events": [
+    {
+      "capturedAt": "2026-04-23T05:10:31.462Z",
+      "capturedAtEpochMs": 1776921031462,
+      "endpoint": {
+        "key": "dashboard",
+        "method": "POST",
+        "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/dashboard"
+      },
+      "error": null,
+      "id": "evt_1776921031462_erf25w",
+      "page": {
+        "scope": {
+          "scopeType": "total",
+          "siteId": "",
+          "siteName": "ALL_SITES",
+          "siteRid": ""
+        },
+        "title": "GNOP - GoStation Statistics",
+        "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/dashboard?"
+      },
+      "request": {
+        "bodyJson": {
+          "endDate": 1776881699,
+          "fromDate": 1776795300
+        },
+        "bodyText": null,
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "client": "gnop",
+          "content-type": "application/json",
+          "enop-sub": "gnop",
+          "language": "en-US",
+          "timezone": "+05:45"
+        }
+      },
+      "response": {
+        "bodyJson": {
+          "availableVm": 45,
+          "batteryInVmCount": 302,
+          "batteryTotalCount": 1295,
+          "constructionVmCount": 0,
+          "inserviceVmCount": 45,
+          "lastUpdateTime": 1776921031,
+          "maintenanceVmCount": 0,
+          "socBelowEightyCount": 265,
+          "socBelowEightyFiveCount": 336,
+          "socBelowNinetyCount": 514,
+          "swapCount": 1602,
+          "totalAh": 29325,
+          "totalKm": 0,
+          "totalPowerCapacity": 183480,
+          "utilization": 16
+        },
+        "bodyText": null,
+        "headers": {
+          "access-control-allow-credentials": "true",
+          "access-control-allow-origin": "*",
+          "content-language": "en-US",
+          "content-length": "335",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Thu, 23 Apr 2026 05:10:30 GMT",
+          "etag": "W/\"14f-HMFZN+l9bwwmuBFz/o4QfbZABpY\"",
+          "x-powered-by": "Express"
+        },
+        "ok": true,
+        "status": 200
+      },
+      "timing": {
+        "finishedAtEpochMs": 1776921031407,
+        "startedAtEpochMs": 1776921030966
+      },
+      "transport": "xhr"
+    },
+    {
+      "capturedAt": "2026-04-23T05:10:33.946Z",
+      "capturedAtEpochMs": 1776921033946,
+      "endpoint": {
+        "key": "dashboard",
+        "method": "POST",
+        "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/dashboard"
+      },
+      "error": null,
+      "id": "evt_1776921033946_yxl6cn",
+      "page": {
+        "scope": {
+          "scopeType": "total",
+          "siteId": "",
+          "siteName": "ALL_SITES",
+          "siteRid": ""
+        },
+        "title": "GNOP - GoStation Statistics",
+        "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/dashboard?"
+      },
+      "request": {
+        "bodyJson": {
+          "endDate": 1776921030,
+          "fromDate": 1776881700
+        },
+        "bodyText": null,
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "client": "gnop",
+          "content-type": "application/json",
+          "enop-sub": "gnop",
+          "language": "en-US",
+          "timezone": "+05:45"
+        }
+      },
+      "response": {
+        "bodyJson": {
+          "availableVm": 45,
+          "batteryInVmCount": 302,
+          "batteryTotalCount": 1295,
+          "constructionVmCount": 0,
+          "inserviceVmCount": 45,
+          "lastUpdateTime": 1776921033,
+          "maintenanceVmCount": 0,
+          "socBelowEightyCount": 12,
+          "socBelowEightyFiveCount": 14,
+          "socBelowNinetyCount": 22,
+          "swapCount": 270,
+          "totalAh": 5034,
+          "totalKm": 0,
+          "totalPowerCapacity": 74450,
+          "utilization": 7
+        },
+        "bodyText": null,
+        "headers": {
+          "access-control-allow-credentials": "true",
+          "access-control-allow-origin": "*",
+          "content-language": "en-US",
+          "content-length": "328",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Thu, 23 Apr 2026 05:10:33 GMT",
+          "etag": "W/\"148-wh536uxSGsdwSaM1xBMA2WUZ65s\"",
+          "x-powered-by": "Express"
+        },
+        "ok": true,
+        "status": 200
+      },
+      "timing": {
+        "finishedAtEpochMs": 1776921033916,
+        "startedAtEpochMs": 1776921030964
+      },
+      "transport": "xhr"
+    }
+  ]
+}

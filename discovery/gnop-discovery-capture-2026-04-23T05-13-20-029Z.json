@@ -1,0 +1,5321 @@
+{
+  "exportedAt": "2026-04-23T05:13:20.023Z",
+  "exportedAtEpochMs": 1776921200023,
+  "extension": {
+    "name": "GNOP Discovery Capture",
+    "version": "0.1.0"
+  },
+  "captureConfig": {
+    "enabled": true,
+    "maxEvents": 2500,
+    "onlyDashboardDefaultDate": true,
+    "totalMeansNoSiteSelection": true
+  },
+  "summary": {
+    "totalEvents": 8,
+    "byEndpoint": {
+      "dashboard": 2,
+      "swap-summary": 2,
+      "swap-count": 2,
+      "site-search": 2
+    },
+    "byScopeType": {
+      "total": 8
+    }
+  },
+  "samples": {
+    "dashboard": {
+      "total": {
+        "capturedAt": "2026-04-23T05:10:31.462Z",
+        "capturedAtEpochMs": 1776921031462,
+        "endpoint": {
+          "key": "dashboard",
+          "method": "POST",
+          "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/dashboard"
+        },
+        "error": null,
+        "id": "evt_1776921031462_erf25w",
+        "page": {
+          "scope": {
+            "scopeType": "total",
+            "siteId": "",
+            "siteName": "ALL_SITES",
+            "siteRid": ""
+          },
+          "title": "GNOP - GoStation Statistics",
+          "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/dashboard?"
+        },
+        "request": {
+          "bodyJson": {
+            "endDate": 1776881699,
+            "fromDate": 1776795300
+          },
+          "bodyText": null,
+          "headers": {
+            "accept": "application/json, text/plain, */*",
+            "client": "gnop",
+            "content-type": "application/json",
+            "enop-sub": "gnop",
+            "language": "en-US",
+            "timezone": "+05:45"
+          }
+        },
+        "response": {
+          "bodyJson": {
+            "availableVm": 45,
+            "batteryInVmCount": 302,
+            "batteryTotalCount": 1295,
+            "constructionVmCount": 0,
+            "inserviceVmCount": 45,
+            "lastUpdateTime": 1776921031,
+            "maintenanceVmCount": 0,
+            "socBelowEightyCount": 265,
+            "socBelowEightyFiveCount": 336,
+            "socBelowNinetyCount": 514,
+            "swapCount": 1602,
+            "totalAh": 29325,
+            "totalKm": 0,
+            "totalPowerCapacity": 183480,
+            "utilization": 16
+          },
+          "bodyText": null,
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-origin": "*",
+            "content-language": "en-US",
+            "content-length": "335",
+            "content-type": "application/json; charset=utf-8",
+            "date": "Thu, 23 Apr 2026 05:10:30 GMT",
+            "etag": "W/\"14f-HMFZN+l9bwwmuBFz/o4QfbZABpY\"",
+            "x-powered-by": "Express"
+          },
+          "ok": true,
+          "status": 200
+        },
+        "timing": {
+          "finishedAtEpochMs": 1776921031407,
+          "startedAtEpochMs": 1776921030966
+        },
+        "transport": "xhr"
+      },
+      "site": null
+    },
+    "site-search": {
+      "total": {
+        "capturedAt": "2026-04-23T05:12:56.954Z",
+        "capturedAtEpochMs": 1776921176954,
+        "endpoint": {
+          "key": "site-search",
+          "method": "GET",
+          "url": "https://gnop.nebula.gogoro.com/api/v1/gostation/site/search?companyId=6MyzkQeJ&hasInverter&page=1&perPage=10&photoIncluded&siteName=&siteRid="
+        },
+        "error": null,
+        "id": "evt_1776921176954_189g2j",
+        "page": {
+          "scope": {
+            "scopeType": "total",
+            "siteId": "",
+            "siteName": "ALL_SITES",
+            "siteRid": ""
+          },
+          "title": "GNOP - GoStation Statistics",
+          "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today?dimension=4&endDate=1776917700&fromDate=1776834900&gsIds&searchOption=site&siteIds&timeScale=hours"
+        },
+        "request": {
+          "bodyJson": null,
+          "bodyText": null,
+          "headers": {
+            "accept": "application/json, text/plain, */*",
+            "client": "gnop",
+            "enop-sub": "gnop",
+            "language": "en-US",
+            "timezone": "+05:45"
+          }
+        },
+        "response": {
+          "bodyJson": [
+            {
+              "address": {
+                "address": {
+                  "en-US": "sitapaila",
+                  "local": "sitapaila"
+                },
+                "city": {
+                  "code": "42-0",
+                  "name": {
+                    "en-US": "bagmati",
+                    "undefined": "bagmati"
+                  }
+                },
+                "district": {
+                  "code": "42-0-2",
+                  "name": {
+                    "en-US": "kathmandu",
+                    "undefined": "kathmandu"
+                  }
+                },
+                "zip": "44600"
+              },
+              "availableTime": [
+                {
+                  "day": "monday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "tuesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "wednesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "thursday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "friday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "saturday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "sunday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                }
+              ],
+              "category": {},
+              "company": {
+                "code": "900181",
+                "country": "NP",
+                "id": "6MyzkQeJ",
+                "name": "Nebula Energy Pvt. Ltd"
+              },
+              "countOfSitePhotos": 0,
+              "createTime": 1753781754,
+              "creator": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "departmentId": "530jgAMO",
+              "engineer": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "gsCount": 0,
+              "gsList": [
+                {
+                  "chargerCount": 8,
+                  "gsId": "XeVEKQML",
+                  "gsName": "Bafal Testing Centre 2",
+                  "gsRid": "NP4460025070047A",
+                  "gsStatus": 203,
+                  "slotCount": 8,
+                  "typeA": 1,
+                  "typeB": 0
+                }
+              ],
+              "gsSlots": 0,
+              "inverter": 0,
+              "latitude": 27.70239,
+              "longitude": 85.28241,
+              "operationDate": 1753781519,
+              "operationGroup": {
+                "division": {
+                  "code": "DIVISION",
+                  "id": "530jgAMO",
+                  "name": "Operation Department"
+                },
+                "region": {
+                  "code": "A52C7576",
+                  "id": "zMv7laev",
+                  "name": "Operation Department - Region"
+                },
+                "section": {
+                  "code": "SECTION",
+                  "id": "D31n2R8j",
+                  "name": "Operation Department - Section"
+                }
+              },
+              "photos": [],
+              "reviser": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "siteId": "530b7nMO",
+              "siteName": {
+                "en-US": "Bafal Testing centre 2",
+                "local": "Bafal Testing centre 2"
+              },
+              "siteRid": "NP4460025070047",
+              "status": 5,
+              "trial": 0,
+              "updateTime": 1754381054,
+              "visible": 1,
+              "vmType": 1
+            },
+            {
+              "address": {
+                "address": {
+                  "en-US": "Balkhu Chowk, Next to Dakhshin Kali Oil Store",
+                  "local": "Balkhu Chowk, Next to Dakhshin Kali Oil Store"
+                },
+                "city": {
+                  "code": "42-0",
+                  "name": {
+                    "en-US": "bagmati",
+                    "undefined": "bagmati"
+                  }
+                },
+                "district": {
+                  "code": "42-0-2",
+                  "name": {
+                    "en-US": "kathmandu",
+                    "undefined": "kathmandu"
+                  }
+                },
+                "zip": "44600"
+              },
+              "availableTime": [
+                {
+                  "day": "monday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "tuesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "wednesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "thursday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "friday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "saturday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "sunday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                }
+              ],
+              "category": {},
+              "company": {
+                "code": "900181",
+                "country": "NP",
+                "id": "6MyzkQeJ",
+                "name": "Nebula Energy Pvt. Ltd"
+              },
+              "countOfSitePhotos": 0,
+              "createTime": 1736412656,
+              "creator": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "departmentId": "530jgAMO",
+              "engineer": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "gsCount": 1,
+              "gsList": [
+                {
+                  "chargerCount": 8,
+                  "equipmentCode": "V08WG240910000039M",
+                  "gsId": "AMx7kD8G",
+                  "gsName": "Balkhu Go station",
+                  "gsRid": "NP446000046A",
+                  "gsStatus": 1,
+                  "hwVersion": "6.0",
+                  "patchVersion": "PAT_20260401.020423",
+                  "slotCount": 8,
+                  "typeA": 1,
+                  "typeB": 0
+                }
+              ],
+              "gsSlots": 8,
+              "inverter": 0,
+              "latitude": 27.68365,
+              "longitude": 85.29759,
+              "operationDate": 1736412569,
+              "operationGroup": {
+                "division": {
+                  "code": "DIVISION",
+                  "id": "530jgAMO",
+                  "name": "Operation Department"
+                },
+                "region": {
+                  "code": "A52C7576",
+                  "id": "zMv7laev",
+                  "name": "Operation Department - Region"
+                },
+                "section": {
+                  "code": "SECTION",
+                  "id": "D31n2R8j",
+                  "name": "Operation Department - Section"
+                }
+              },
+              "photos": [],
+              "reviser": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "siteId": "4eE2pB3v",
+              "siteName": {
+                "en-US": "Balkhu GoStation",
+                "local": "Balkhu GoStation"
+              },
+              "siteRid": "NP446000046",
+              "status": 1,
+              "trial": 0,
+              "updateTime": 1739338611,
+              "visible": 1,
+              "vmType": 1
+            },
+            {
+              "address": {
+                "address": {
+                  "en-US": "Hama Oil, Swayambhu Pump",
+                  "local": "Hama Oil, Swayambhu Pump"
+                },
+                "city": {
+                  "code": "42-0",
+                  "name": {
+                    "en-US": "bagmati",
+                    "undefined": "bagmati"
+                  }
+                },
+                "district": {
+                  "code": "42-0-2",
+                  "name": {
+                    "en-US": "kathmandu",
+                    "undefined": "kathmandu"
+                  }
+                },
+                "zip": "44600"
+              },
+              "availableTime": [
+                {
+                  "day": "monday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "tuesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "wednesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "thursday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "friday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "saturday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "sunday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                }
+              ],
+              "category": {},
+              "company": {
+                "code": "900181",
+                "country": "NP",
+                "id": "6MyzkQeJ",
+                "name": "Nebula Energy Pvt. Ltd"
+              },
+              "contactPerson": "supartik ",
+              "contactPersonEmail": "supartil.parajuli@nebulanp.com",
+              "contactPersonPhone": "9816080404",
+              "countOfSitePhotos": 0,
+              "createTime": 1736331250,
+              "creator": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "departmentId": "530jgAMO",
+              "engineer": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "gsCount": 1,
+              "gsList": [
+                {
+                  "chargerCount": 8,
+                  "equipmentCode": "V08WG240910000038M",
+                  "gsId": "P8pjz6e0",
+                  "gsName": "Swayambhu Pump GoStation",
+                  "gsRid": "NP446000045A",
+                  "gsStatus": 1,
+                  "hwVersion": "6.0",
+                  "patchVersion": "PAT_20260401.020423",
+                  "slotCount": 8,
+                  "typeA": 1,
+                  "typeB": 0
+                }
+              ],
+              "gsSlots": 8,
+              "inverter": 0,
+              "latitude": 27.71533,
+              "longitude": 85.28382,
+              "operationDate": 1736331173,
+              "operationGroup": {
+                "division": {
+                  "code": "DIVISION",
+                  "id": "530jgAMO",
+                  "name": "Operation Department"
+                },
+                "region": {
+                  "code": "A52C7576",
+                  "id": "zMv7laev",
+                  "name": "Operation Department - Region"
+                },
+                "section": {
+                  "code": "SECTION",
+                  "id": "D31n2R8j",
+                  "name": "Operation Department - Section"
+                }
+              },
+              "photos": [],
+              "reviser": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "siteId": "6MyVxPeJ",
+              "siteName": {
+                "en-US": "Swayambhu Pump GoStation",
+                "local": "Swayambhu Pump GoStation"
+              },
+              "siteRid": "NP446000045",
+              "status": 1,
+              "trial": 0,
+              "updateTime": 1755164244,
+              "visible": 1,
+              "vmType": 1
+            },
+            {
+              "address": {
+                "address": {
+                  "en-US": "Metro Market, Pepsicola, Kathmandu",
+                  "local": "Metro Market, Pepsicola, Kathmandu"
+                },
+                "city": {
+                  "code": "42-0",
+                  "name": {
+                    "en-US": "bagmati",
+                    "undefined": "bagmati"
+                  }
+                },
+                "district": {
+                  "code": "42-0-2",
+                  "name": {
+                    "en-US": "kathmandu",
+                    "undefined": "kathmandu"
+                  }
+                },
+                "zip": "44600"
+              },
+              "availableTime": [
+                {
+                  "day": "monday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "tuesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "wednesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "thursday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "friday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "saturday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "sunday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                }
+              ],
+              "category": {},
+              "company": {
+                "code": "900181",
+                "country": "NP",
+                "id": "6MyzkQeJ",
+                "name": "Nebula Energy Pvt. Ltd"
+              },
+              "countOfSitePhotos": 0,
+              "createTime": 1736330803,
+              "creator": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "departmentId": "530jgAMO",
+              "engineer": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "gsCount": 1,
+              "gsList": [
+                {
+                  "chargerCount": 8,
+                  "equipmentCode": "V08WG240910000040M",
+                  "gsId": "ze7Xr23k",
+                  "gsName": "Pepsicola Metro Market GoStation",
+                  "gsRid": "NP446000044A",
+                  "gsStatus": 1,
+                  "hwVersion": "6.0",
+                  "patchVersion": "PAT_20260401.020423",
+                  "slotCount": 8,
+                  "typeA": 1,
+                  "typeB": 0
+                }
+              ],
+              "gsSlots": 8,
+              "inverter": 0,
+              "latitude": 27.69258,
+              "longitude": 85.36706,
+              "operationDate": 1736330693,
+              "operationGroup": {
+                "division": {
+                  "code": "DIVISION",
+                  "id": "530jgAMO",
+                  "name": "Operation Department"
+                },
+                "region": {
+                  "code": "A52C7576",
+                  "id": "zMv7laev",
+                  "name": "Operation Department - Region"
+                },
+                "section": {
+                  "code": "SECTION",
+                  "id": "D31n2R8j",
+                  "name": "Operation Department - Section"
+                }
+              },
+              "photos": [],
+              "reviser": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "siteId": "d3Dgjoeg",
+              "siteName": {
+                "en-US": "Pepsicola Metro Market GoStation",
+                "local": "Pepsicola Metro Market GoStation"
+              },
+              "siteRid": "NP446000044",
+              "status": 1,
+              "trial": 0,
+              "updateTime": 1739337261,
+              "visible": 1,
+              "vmType": 1
+            },
+            {
+              "address": {
+                "address": {
+                  "en-US": "Kapan Metro Market, Kathmandu",
+                  "local": "Kapan Metro Market, Kathmandu"
+                },
+                "city": {
+                  "code": "42-0",
+                  "name": {
+                    "en-US": "bagmati",
+                    "undefined": "bagmati"
+                  }
+                },
+                "district": {
+                  "code": "42-0-2",
+                  "name": {
+                    "en-US": "kathmandu",
+                    "undefined": "kathmandu"
+                  }
+                },
+                "zip": "44600"
+              },
+              "availableTime": [
+                {
+                  "day": "monday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "tuesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "wednesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "thursday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "friday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "saturday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "sunday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                }
+              ],
+              "category": {},
+              "company": {
+                "code": "900181",
+                "country": "NP",
+                "id": "6MyzkQeJ",
+                "name": "Nebula Energy Pvt. Ltd"
+              },
+              "countOfSitePhotos": 0,
+              "createTime": 1736329991,
+              "creator": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "departmentId": "530jgAMO",
+              "engineer": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "gsCount": 1,
+              "gsList": [
+                {
+                  "chargerCount": 8,
+                  "equipmentCode": "V08WG240910000042M",
+                  "gsId": "786qQv3g",
+                  "gsName": "Kapan Metro Market GoStation",
+                  "gsRid": "NP446000043A",
+                  "gsStatus": 1,
+                  "hwVersion": "6.0",
+                  "patchVersion": "PAT_20260401.020423",
+                  "slotCount": 8,
+                  "typeA": 1,
+                  "typeB": 0
+                }
+              ],
+              "gsSlots": 8,
+              "inverter": 0,
+              "latitude": 27.7327,
+              "longitude": 85.36189,
+              "operationDate": 1736329917,
+              "operationGroup": {
+                "division": {
+                  "code": "DIVISION",
+                  "id": "530jgAMO",
+                  "name": "Operation Department"
+                },
+                "region": {
+                  "code": "A52C7576",
+                  "id": "zMv7laev",
+                  "name": "Operation Department - Region"
+                },
+                "section": {
+                  "code": "SECTION",
+                  "id": "D31n2R8j",
+                  "name": "Operation Department - Section"
+                }
+              },
+              "photos": [],
+              "reviser": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "siteId": "zMWA6732",
+              "siteName": {
+                "en-US": "Kapan MetroMarket GoStation",
+                "local": "Kapan MetroMarket GoStation"
+              },
+              "siteRid": "NP446000043",
+              "status": 1,
+              "trial": 0,
+              "updateTime": 1749098018,
+              "visible": 1,
+              "vmType": 1
+            },
+            {
+              "address": {
+                "address": {
+                  "en-US": "Behind BYD showroom ",
+                  "local": "Behind BYD showroom "
+                },
+                "city": {
+                  "code": "42-0",
+                  "name": {
+                    "en-US": "bagmati",
+                    "undefined": "bagmati"
+                  }
+                },
+                "district": {
+                  "code": "42-0-2",
+                  "name": {
+                    "en-US": "kathmandu",
+                    "undefined": "kathmandu"
+                  }
+                },
+                "zip": "44600"
+              },
+              "availableTime": [
+                {
+                  "day": "monday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "tuesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "wednesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "thursday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "friday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "saturday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "sunday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                }
+              ],
+              "category": {},
+              "company": {
+                "code": "900181",
+                "country": "NP",
+                "id": "6MyzkQeJ",
+                "name": "Nebula Energy Pvt. Ltd"
+              },
+              "contactPerson": "supartik ",
+              "contactPersonEmail": "supartik.parajuli@nebulanp.com",
+              "contactPersonPhone": "9816080404",
+              "countOfSitePhotos": 0,
+              "createTime": 1736238769,
+              "creator": {
+                "code": "42E5CE39",
+                "id": "k8JBXR8p",
+                "name": "Kamalesh Kumar"
+              },
+              "departmentId": "530jgAMO",
+              "engineer": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "gsCount": 1,
+              "gsList": [
+                {
+                  "chargerCount": 8,
+                  "equipmentCode": "V08WG240910000002M",
+                  "gsId": "6My6npeJ",
+                  "gsName": "Naxal Showroom Gostation",
+                  "gsRid": "NP446000042A",
+                  "gsStatus": 1,
+                  "hwVersion": "6.0",
+                  "patchVersion": "PAT_20260401.020423",
+                  "slotCount": 8,
+                  "typeA": 1,
+                  "typeB": 0
+                }
+              ],
+              "gsSlots": 8,
+              "inverter": 0,
+              "latitude": 27.71424,
+              "longitude": 85.32488,
+              "operationDate": 1736238786,
+              "operationGroup": {
+                "division": {
+                  "code": "DIVISION",
+                  "id": "530jgAMO",
+                  "name": "Operation Department"
+                },
+                "region": {
+                  "code": "A52C7576",
+                  "id": "zMv7laev",
+                  "name": "Operation Department - Region"
+                },
+                "section": {
+                  "code": "SECTION",
+                  "id": "D31n2R8j",
+                  "name": "Operation Department - Section"
+                }
+              },
+              "photos": [],
+              "reviser": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "siteId": "Z3Rv7J3d",
+              "siteName": {
+                "en-US": "Naxal Showroom GoStation",
+                "local": "Naxal Showroom GoStation"
+              },
+              "siteRid": "NP446000042",
+              "status": 1,
+              "trial": 0,
+              "updateTime": 1750395430,
+              "visible": 1,
+              "vmType": 1
+            },
+            {
+              "address": {
+                "address": {
+                  "en-US": "Koila Multi Cuisine Restaurant, Dovan Pool, Chyasal, Kathmandu.",
+                  "local": "Koila Multi Cuisine Restaurant, Dovan Pool, Chyasal, Kathmandu."
+                },
+                "city": {
+                  "code": "42-0",
+                  "name": {
+                    "en-US": "bagmati",
+                    "undefined": "bagmati"
+                  }
+                },
+                "district": {
+                  "code": "42-0-2",
+                  "name": {
+                    "en-US": "kathmandu",
+                    "undefined": "kathmandu"
+                  }
+                },
+                "zip": "44600"
+              },
+              "availableTime": [
+                {
+                  "day": "monday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "tuesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "wednesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "thursday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "friday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "saturday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "sunday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                }
+              ],
+              "category": {},
+              "company": {
+                "code": "900181",
+                "country": "NP",
+                "id": "6MyzkQeJ",
+                "name": "Nebula Energy Pvt. Ltd"
+              },
+              "countOfSitePhotos": 0,
+              "createTime": 1736227378,
+              "creator": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "departmentId": "530jgAMO",
+              "engineer": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "gsCount": 1,
+              "gsList": [
+                {
+                  "chargerCount": 8,
+                  "equipmentCode": "V08WG240910000008M",
+                  "gsId": "zMkk6zML",
+                  "gsName": "Chyasal GoStation",
+                  "gsRid": "NP446000041A",
+                  "gsStatus": 1,
+                  "hwVersion": "6.0",
+                  "patchVersion": "PAT_20260401.020423",
+                  "slotCount": 8,
+                  "typeA": 1,
+                  "typeB": 0
+                }
+              ],
+              "gsSlots": 8,
+              "inverter": 0,
+              "latitude": 27.6789,
+              "longitude": 85.33531,
+              "operationDate": 1736227293,
+              "operationGroup": {
+                "division": {
+                  "code": "DIVISION",
+                  "id": "530jgAMO",
+                  "name": "Operation Department"
+                },
+                "region": {
+                  "code": "A52C7576",
+                  "id": "zMv7laev",
+                  "name": "Operation Department - Region"
+                },
+                "section": {
+                  "code": "SECTION",
+                  "id": "D31n2R8j",
+                  "name": "Operation Department - Section"
+                }
+              },
+              "photos": [],
+              "reviser": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "siteId": "DeZLw18w",
+              "siteName": {
+                "en-US": "Chyasal Corridor GoStation",
+                "local": "Chyasal Corridor GoStation"
+              },
+              "siteRid": "NP446000041",
+              "status": 1,
+              "trial": 0,
+              "updateTime": 1749444438,
+              "visible": 1,
+              "vmType": 1
+            },
+            {
+              "address": {
+                "address": {
+                  "en-US": "Gayatri Petrol Pump, Ekantakuna Chowk",
+                  "local": "Gayatri Petrol Pump, Ekantakuna Chowk"
+                },
+                "city": {
+                  "code": "42-0",
+                  "name": {
+                    "en-US": "bagmati",
+                    "undefined": "bagmati"
+                  }
+                },
+                "district": {
+                  "code": "42-0-4",
+                  "name": {
+                    "en-US": "lalitpur",
+                    "undefined": "lalitpur"
+                  }
+                },
+                "zip": "44600"
+              },
+              "availableTime": [
+                {
+                  "day": "monday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "tuesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "wednesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "thursday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "friday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "saturday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "sunday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                }
+              ],
+              "category": {},
+              "company": {
+                "code": "900181",
+                "country": "NP",
+                "id": "6MyzkQeJ",
+                "name": "Nebula Energy Pvt. Ltd"
+              },
+              "countOfSitePhotos": 0,
+              "createTime": 1736227269,
+              "creator": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "departmentId": "530jgAMO",
+              "engineer": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "gsCount": 1,
+              "gsList": [
+                {
+                  "chargerCount": 8,
+                  "equipmentCode": "V08WG240910000041M",
+                  "gsId": "4eEqPAev",
+                  "gsName": "Ekantakuna Pump GoStation",
+                  "gsRid": "NP446000040A",
+                  "gsStatus": 1,
+                  "hwVersion": "6.0",
+                  "patchVersion": "PAT_20260401.020423",
+                  "slotCount": 8,
+                  "typeA": 1,
+                  "typeB": 0
+                }
+              ],
+              "gsSlots": 8,
+              "inverter": 0,
+              "latitude": 27.66642,
+              "longitude": 85.30793,
+              "operationDate": 1736227188,
+              "operationGroup": {
+                "division": {
+                  "code": "DIVISION",
+                  "id": "530jgAMO",
+                  "name": "Operation Department"
+                },
+                "region": {
+                  "code": "A52C7576",
+                  "id": "zMv7laev",
+                  "name": "Operation Department - Region"
+                },
+                "section": {
+                  "code": "SECTION",
+                  "id": "D31n2R8j",
+                  "name": "Operation Department - Section"
+                }
+              },
+              "photos": [],
+              "reviser": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "siteId": "530bjvMO",
+              "siteName": {
+                "en-US": "Ekantakuna Pump GoStation",
+                "local": "Ekantakuna Pump GoStation"
+              },
+              "siteRid": "NP446000040",
+              "status": 1,
+              "trial": 0,
+              "updateTime": 1749529848,
+              "visible": 1,
+              "vmType": 1
+            },
+            {
+              "address": {
+                "address": {
+                  "en-US": "Mali Oil Store, Kalimati Chowk.",
+                  "local": "Mali Oil Store, Kalimati Chowk."
+                },
+                "city": {
+                  "code": "42-0",
+                  "name": {
+                    "en-US": "bagmati",
+                    "undefined": "bagmati"
+                  }
+                },
+                "district": {
+                  "code": "42-0-2",
+                  "name": {
+                    "en-US": "kathmandu",
+                    "undefined": "kathmandu"
+                  }
+                },
+                "zip": "44600"
+              },
+              "availableTime": [
+                {
+                  "day": "monday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "tuesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "wednesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "thursday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "friday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "saturday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "sunday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                }
+              ],
+              "category": {},
+              "company": {
+                "code": "900181",
+                "country": "NP",
+                "id": "6MyzkQeJ",
+                "name": "Nebula Energy Pvt. Ltd"
+              },
+              "countOfSitePhotos": 0,
+              "createTime": 1736052179,
+              "creator": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "departmentId": "530jgAMO",
+              "engineer": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "gsCount": 1,
+              "gsList": [
+                {
+                  "chargerCount": 8,
+                  "equipmentCode": "V08WG240910000031M",
+                  "gsId": "Z3RE9Eed",
+                  "gsName": "Kalimati Pump GoStation ",
+                  "gsRid": "NP446000039A",
+                  "gsStatus": 1,
+                  "hwVersion": "6.0",
+                  "patchVersion": "PAT_20260401.020423",
+                  "slotCount": 8,
+                  "typeA": 1,
+                  "typeB": 0
+                }
+              ],
+              "gsSlots": 8,
+              "inverter": 0,
+              "latitude": 27.69868,
+              "longitude": 85.29981,
+              "operationDate": 1736052109,
+              "operationGroup": {
+                "division": {
+                  "code": "DIVISION",
+                  "id": "530jgAMO",
+                  "name": "Operation Department"
+                },
+                "region": {
+                  "code": "A52C7576",
+                  "id": "zMv7laev",
+                  "name": "Operation Department - Region"
+                },
+                "section": {
+                  "code": "SECTION",
+                  "id": "D31n2R8j",
+                  "name": "Operation Department - Section"
+                }
+              },
+              "photos": [],
+              "reviser": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "siteId": "D31gnKMj",
+              "siteName": {
+                "en-US": "Kalimati Pump GoStation",
+                "local": "Kalimati Pump GoStation"
+              },
+              "siteRid": "NP446000039",
+              "status": 1,
+              "trial": 0,
+              "updateTime": 1749703464,
+              "visible": 1,
+              "vmType": 1
+            },
+            {
+              "address": {
+                "address": {
+                  "en-US": "Naryan Oil, Janagal, Banepa, Kavrepalanchowk",
+                  "local": "Naryan Oil, Janagal, Banepa, Kavrepalanchowk"
+                },
+                "city": {
+                  "code": "42-0",
+                  "name": {
+                    "en-US": "bagmati",
+                    "undefined": "bagmati"
+                  }
+                },
+                "district": {
+                  "code": "42-0-2",
+                  "name": {
+                    "en-US": "kathmandu",
+                    "undefined": "kathmandu"
+                  }
+                },
+                "zip": "44600"
+              },
+              "availableTime": [
+                {
+                  "day": "monday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "tuesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "wednesday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "thursday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "friday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "saturday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                },
+                {
+                  "day": "sunday",
+                  "time": [
+                    {
+                      "from": "00:00",
+                      "to": "23:59"
+                    }
+                  ]
+                }
+              ],
+              "category": {},
+              "company": {
+                "code": "900181",
+                "country": "NP",
+                "id": "6MyzkQeJ",
+                "name": "Nebula Energy Pvt. Ltd"
+              },
+              "countOfSitePhotos": 0,
+              "createTime": 1736052093,
+              "creator": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "departmentId": "530jgAMO",
+              "engineer": {
+                "code": "00002",
+                "id": "53071OeO",
+                "name": "Rohan Joshi"
+              },
+              "gsCount": 1,
+              "gsList": [
+                {
+                  "chargerCount": 8,
+                  "equipmentCode": "V08WG240910000032M",
+                  "gsId": "Y8mNV6MN",
+                  "gsName": "Banepa Pump GoStation",
+                  "gsRid": "NP446000038A",
+                  "gsStatus": 1,
+                  "hwVersion": "6.0",
+                  "patchVersion": "PAT_20260401.020423",
+                  "slotCount": 8,
+                  "typeA": 1,
+                  "typeB": 0
+                }
+              ],
+              "gsSlots": 8,
+              "inverter": 0,
+              "latitude": 27.63217,
+              "longitude": 85.50796,
+              "operationDate": 1736052014,
+              "operationGroup": {
+                "division": {
+                  "code": "DIVISION",
+                  "id": "530jgAMO",
+                  "name": "Operation Department"
+                },
+                "region": {
+                  "code": "A52C7576",
+                  "id": "zMv7laev",
+                  "name": "Operation Department - Region"
+                },
+                "section": {
+                  "code": "SECTION",
+                  "id": "D31n2R8j",
+                  "name": "Operation Department - Section"
+                }
+              },
+              "photos": [],
+              "reviser": {
+                "code": "00001",
+                "id": "l3rg5Z8r",
+                "name": "Supratik Parajuli"
+              },
+              "siteId": "Y3B7pL8a",
+              "siteName": {
+                "en-US": "Banepa Pump GoStation",
+                "local": "Banepa Pump GoStation"
+              },
+              "siteRid": "NP446000038",
+              "status": 1,
+              "trial": 0,
+              "updateTime": 1750929333,
+              "visible": 1,
+              "vmType": 1
+            }
+          ],
+          "bodyText": null,
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-origin": "*",
+            "content-language": "en-US",
+            "content-length": "19179",
+            "content-type": "application/json; charset=utf-8",
+            "date": "Thu, 23 Apr 2026 05:12:56 GMT",
+            "etag": "W/\"4aeb-75/eZnTcsrXUoRqSs2d+kJt6clA\"",
+            "x-page": "1",
+            "x-per-page": "10",
+            "x-powered-by": "Express",
+            "x-total-count": "46"
+          },
+          "ok": true,
+          "status": 200
+        },
+        "timing": {
+          "finishedAtEpochMs": 1776921176921,
+          "startedAtEpochMs": 1776921176591
+        },
+        "transport": "xhr"
+      },
+      "site": null
+    },
+    "swap-count": {
+      "total": {
+        "capturedAt": "2026-04-23T05:12:38.140Z",
+        "capturedAtEpochMs": 1776921158140,
+        "endpoint": {
+          "key": "swap-count",
+          "method": "POST",
+          "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/swap-count"
+        },
+        "error": null,
+        "id": "evt_1776921158140_8kj31x",
+        "page": {
+          "scope": {
+            "scopeType": "total",
+            "siteId": "",
+            "siteName": "ALL_SITES",
+            "siteRid": ""
+          },
+          "title": "GNOP - GoStation Statistics",
+          "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today"
+        },
+        "request": {
+          "bodyJson": {
+            "dimension": 4,
+            "reportSetting": {
+              "endDate": 1776917700,
+              "fromDate": 1776834900,
+              "timeScale": "hours"
+            }
+          },
+          "bodyText": null,
+          "headers": {
+            "accept": "application/json, text/plain, */*",
+            "client": "gnop",
+            "content-type": "application/json",
+            "enop-sub": "gnop",
+            "language": "en-US",
+            "timezone": "+05:45"
+          }
+        },
+        "response": {
+          "bodyJson": {
+            "reportSetting": {
+              "endDate": 1776917700,
+              "fromDate": 1776834900,
+              "timeScale": "hours"
+            },
+            "series": [
+              {
+                "averageSwapCount": [
+                  3,
+                  2,
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  2,
+                  2,
+                  1,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  1,
+                  1,
+                  2,
+                  2
+                ],
+                "swapCount": [
+                  122,
+                  107,
+                  113,
+                  124,
+                  128,
+                  131,
+                  113,
+                  116,
+                  93,
+                  72,
+                  56,
+                  34,
+                  20,
+                  6,
+                  9,
+                  5,
+                  3,
+                  3,
+                  12,
+                  30,
+                  53,
+                  65,
+                  84,
+                  93
+                ]
+              }
+            ]
+          },
+          "bodyText": null,
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-origin": "*",
+            "content-language": "en-US",
+            "content-length": "253",
+            "content-type": "application/json; charset=utf-8",
+            "date": "Thu, 23 Apr 2026 05:12:37 GMT",
+            "etag": "W/\"fd-UUxfkWRko/lyUxYzvIx+mGdyrUU\"",
+            "x-powered-by": "Express"
+          },
+          "ok": true,
+          "status": 200
+        },
+        "timing": {
+          "finishedAtEpochMs": 1776921157921,
+          "startedAtEpochMs": 1776921157409
+        },
+        "transport": "xhr"
+      },
+      "site": null
+    },
+    "swap-summary": {
+      "total": {
+        "capturedAt": "2026-04-23T05:12:37.951Z",
+        "capturedAtEpochMs": 1776921157951,
+        "endpoint": {
+          "key": "swap-summary",
+          "method": "POST",
+          "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/swap-summary"
+        },
+        "error": null,
+        "id": "evt_1776921157950_d6n2gt",
+        "page": {
+          "scope": {
+            "scopeType": "total",
+            "siteId": "",
+            "siteName": "ALL_SITES",
+            "siteRid": ""
+          },
+          "title": "GNOP - GoStation Statistics",
+          "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today"
+        },
+        "request": {
+          "bodyJson": {
+            "dimension": 4,
+            "reportSetting": {
+              "endDate": 1776917700,
+              "fromDate": 1776834900,
+              "timeScale": "hours"
+            }
+          },
+          "bodyText": null,
+          "headers": {
+            "accept": "application/json, text/plain, */*",
+            "client": "gnop",
+            "content-type": "application/json",
+            "enop-sub": "gnop",
+            "language": "en-US",
+            "timezone": "+05:45"
+          }
+        },
+        "response": {
+          "bodyJson": {
+            "reportSetting": {
+              "endDate": 1776917700,
+              "fromDate": 1776834900,
+              "timeScale": "hours"
+            },
+            "series": [
+              {
+                "socBelowEightyCount": [
+                  13,
+                  24,
+                  16,
+                  22,
+                  28,
+                  24,
+                  36,
+                  29,
+                  29,
+                  9,
+                  2,
+                  3,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  2,
+                  10,
+                  9
+                ],
+                "socBelowEightyFiveCount": [
+                  19,
+                  26,
+                  21,
+                  30,
+                  36,
+                  38,
+                  42,
+                  36,
+                  33,
+                  11,
+                  3,
+                  3,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  3,
+                  10,
+                  12
+                ],
+                "socBelowNinetyCount": [
+                  41,
+                  38,
+                  35,
+                  51,
+                  59,
+                  59,
+                  53,
+                  56,
+                  45,
+                  17,
+                  7,
+                  4,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  4,
+                  7,
+                  11,
+                  19
+                ],
+                "totalAh": [
+                  2225.39,
+                  2009.94,
+                  2178.25,
+                  2180.91,
+                  2320.08,
+                  2290.04,
+                  2034.58,
+                  2102.17,
+                  1658.95,
+                  1293.7,
+                  1024.6,
+                  633.85,
+                  387.57,
+                  107.31,
+                  195.73,
+                  95.15,
+                  36.9,
+                  58.95,
+                  234.88,
+                  511.21,
+                  909.92,
+                  1235.79,
+                  1647.96,
+                  1717.18
+                ],
+                "totalKm": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ]
+          },
+          "bodyText": null,
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-origin": "*",
+            "content-language": "en-US",
+            "content-length": "597",
+            "content-type": "application/json; charset=utf-8",
+            "date": "Thu, 23 Apr 2026 05:12:37 GMT",
+            "etag": "W/\"255-78Qzl00nLCiQwUztzsTXt2giZjc\"",
+            "x-powered-by": "Express"
+          },
+          "ok": true,
+          "status": 200
+        },
+        "timing": {
+          "finishedAtEpochMs": 1776921157897,
+          "startedAtEpochMs": 1776921157410
+        },
+        "transport": "xhr"
+      },
+      "site": null
+    }
+  },
+  "pageMetaByTabId": {
+    "1306652867": {
+      "pageUrl": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today?dimension=4&endDate=1776917700&fromDate=1776834900&gsIds&searchOption=site&siteIds&timeScale=hours",
+      "seenAt": "2026-04-23T05:12:53.771Z",
+      "timezone": "Asia/Katmandu",
+      "timezoneOffsetMinutes": -345,
+      "title": "GNOP - GoStation Statistics"
+    }
+  },
+  "events": [
+    {
+      "capturedAt": "2026-04-23T05:10:31.462Z",
+      "capturedAtEpochMs": 1776921031462,
+      "endpoint": {
+        "key": "dashboard",
+        "method": "POST",
+        "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/dashboard"
+      },
+      "error": null,
+      "id": "evt_1776921031462_erf25w",
+      "page": {
+        "scope": {
+          "scopeType": "total",
+          "siteId": "",
+          "siteName": "ALL_SITES",
+          "siteRid": ""
+        },
+        "title": "GNOP - GoStation Statistics",
+        "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/dashboard?"
+      },
+      "request": {
+        "bodyJson": {
+          "endDate": 1776881699,
+          "fromDate": 1776795300
+        },
+        "bodyText": null,
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "client": "gnop",
+          "content-type": "application/json",
+          "enop-sub": "gnop",
+          "language": "en-US",
+          "timezone": "+05:45"
+        }
+      },
+      "response": {
+        "bodyJson": {
+          "availableVm": 45,
+          "batteryInVmCount": 302,
+          "batteryTotalCount": 1295,
+          "constructionVmCount": 0,
+          "inserviceVmCount": 45,
+          "lastUpdateTime": 1776921031,
+          "maintenanceVmCount": 0,
+          "socBelowEightyCount": 265,
+          "socBelowEightyFiveCount": 336,
+          "socBelowNinetyCount": 514,
+          "swapCount": 1602,
+          "totalAh": 29325,
+          "totalKm": 0,
+          "totalPowerCapacity": 183480,
+          "utilization": 16
+        },
+        "bodyText": null,
+        "headers": {
+          "access-control-allow-credentials": "true",
+          "access-control-allow-origin": "*",
+          "content-language": "en-US",
+          "content-length": "335",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Thu, 23 Apr 2026 05:10:30 GMT",
+          "etag": "W/\"14f-HMFZN+l9bwwmuBFz/o4QfbZABpY\"",
+          "x-powered-by": "Express"
+        },
+        "ok": true,
+        "status": 200
+      },
+      "timing": {
+        "finishedAtEpochMs": 1776921031407,
+        "startedAtEpochMs": 1776921030966
+      },
+      "transport": "xhr"
+    },
+    {
+      "capturedAt": "2026-04-23T05:10:33.946Z",
+      "capturedAtEpochMs": 1776921033946,
+      "endpoint": {
+        "key": "dashboard",
+        "method": "POST",
+        "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/dashboard"
+      },
+      "error": null,
+      "id": "evt_1776921033946_yxl6cn",
+      "page": {
+        "scope": {
+          "scopeType": "total",
+          "siteId": "",
+          "siteName": "ALL_SITES",
+          "siteRid": ""
+        },
+        "title": "GNOP - GoStation Statistics",
+        "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/dashboard?"
+      },
+      "request": {
+        "bodyJson": {
+          "endDate": 1776921030,
+          "fromDate": 1776881700
+        },
+        "bodyText": null,
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "client": "gnop",
+          "content-type": "application/json",
+          "enop-sub": "gnop",
+          "language": "en-US",
+          "timezone": "+05:45"
+        }
+      },
+      "response": {
+        "bodyJson": {
+          "availableVm": 45,
+          "batteryInVmCount": 302,
+          "batteryTotalCount": 1295,
+          "constructionVmCount": 0,
+          "inserviceVmCount": 45,
+          "lastUpdateTime": 1776921033,
+          "maintenanceVmCount": 0,
+          "socBelowEightyCount": 12,
+          "socBelowEightyFiveCount": 14,
+          "socBelowNinetyCount": 22,
+          "swapCount": 270,
+          "totalAh": 5034,
+          "totalKm": 0,
+          "totalPowerCapacity": 74450,
+          "utilization": 7
+        },
+        "bodyText": null,
+        "headers": {
+          "access-control-allow-credentials": "true",
+          "access-control-allow-origin": "*",
+          "content-language": "en-US",
+          "content-length": "328",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Thu, 23 Apr 2026 05:10:33 GMT",
+          "etag": "W/\"148-wh536uxSGsdwSaM1xBMA2WUZ65s\"",
+          "x-powered-by": "Express"
+        },
+        "ok": true,
+        "status": 200
+      },
+      "timing": {
+        "finishedAtEpochMs": 1776921033916,
+        "startedAtEpochMs": 1776921030964
+      },
+      "transport": "xhr"
+    },
+    {
+      "capturedAt": "2026-04-23T05:12:37.951Z",
+      "capturedAtEpochMs": 1776921157951,
+      "endpoint": {
+        "key": "swap-summary",
+        "method": "POST",
+        "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/swap-summary"
+      },
+      "error": null,
+      "id": "evt_1776921157950_d6n2gt",
+      "page": {
+        "scope": {
+          "scopeType": "total",
+          "siteId": "",
+          "siteName": "ALL_SITES",
+          "siteRid": ""
+        },
+        "title": "GNOP - GoStation Statistics",
+        "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today"
+      },
+      "request": {
+        "bodyJson": {
+          "dimension": 4,
+          "reportSetting": {
+            "endDate": 1776917700,
+            "fromDate": 1776834900,
+            "timeScale": "hours"
+          }
+        },
+        "bodyText": null,
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "client": "gnop",
+          "content-type": "application/json",
+          "enop-sub": "gnop",
+          "language": "en-US",
+          "timezone": "+05:45"
+        }
+      },
+      "response": {
+        "bodyJson": {
+          "reportSetting": {
+            "endDate": 1776917700,
+            "fromDate": 1776834900,
+            "timeScale": "hours"
+          },
+          "series": [
+            {
+              "socBelowEightyCount": [
+                13,
+                24,
+                16,
+                22,
+                28,
+                24,
+                36,
+                29,
+                29,
+                9,
+                2,
+                3,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                10,
+                9
+              ],
+              "socBelowEightyFiveCount": [
+                19,
+                26,
+                21,
+                30,
+                36,
+                38,
+                42,
+                36,
+                33,
+                11,
+                3,
+                3,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                3,
+                10,
+                12
+              ],
+              "socBelowNinetyCount": [
+                41,
+                38,
+                35,
+                51,
+                59,
+                59,
+                53,
+                56,
+                45,
+                17,
+                7,
+                4,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                4,
+                7,
+                11,
+                19
+              ],
+              "totalAh": [
+                2225.39,
+                2009.94,
+                2178.25,
+                2180.91,
+                2320.08,
+                2290.04,
+                2034.58,
+                2102.17,
+                1658.95,
+                1293.7,
+                1024.6,
+                633.85,
+                387.57,
+                107.31,
+                195.73,
+                95.15,
+                36.9,
+                58.95,
+                234.88,
+                511.21,
+                909.92,
+                1235.79,
+                1647.96,
+                1717.18
+              ],
+              "totalKm": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "bodyText": null,
+        "headers": {
+          "access-control-allow-credentials": "true",
+          "access-control-allow-origin": "*",
+          "content-language": "en-US",
+          "content-length": "597",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Thu, 23 Apr 2026 05:12:37 GMT",
+          "etag": "W/\"255-78Qzl00nLCiQwUztzsTXt2giZjc\"",
+          "x-powered-by": "Express"
+        },
+        "ok": true,
+        "status": 200
+      },
+      "timing": {
+        "finishedAtEpochMs": 1776921157897,
+        "startedAtEpochMs": 1776921157410
+      },
+      "transport": "xhr"
+    },
+    {
+      "capturedAt": "2026-04-23T05:12:38.140Z",
+      "capturedAtEpochMs": 1776921158140,
+      "endpoint": {
+        "key": "swap-count",
+        "method": "POST",
+        "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/swap-count"
+      },
+      "error": null,
+      "id": "evt_1776921158140_8kj31x",
+      "page": {
+        "scope": {
+          "scopeType": "total",
+          "siteId": "",
+          "siteName": "ALL_SITES",
+          "siteRid": ""
+        },
+        "title": "GNOP - GoStation Statistics",
+        "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today"
+      },
+      "request": {
+        "bodyJson": {
+          "dimension": 4,
+          "reportSetting": {
+            "endDate": 1776917700,
+            "fromDate": 1776834900,
+            "timeScale": "hours"
+          }
+        },
+        "bodyText": null,
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "client": "gnop",
+          "content-type": "application/json",
+          "enop-sub": "gnop",
+          "language": "en-US",
+          "timezone": "+05:45"
+        }
+      },
+      "response": {
+        "bodyJson": {
+          "reportSetting": {
+            "endDate": 1776917700,
+            "fromDate": 1776834900,
+            "timeScale": "hours"
+          },
+          "series": [
+            {
+              "averageSwapCount": [
+                3,
+                2,
+                3,
+                3,
+                3,
+                3,
+                3,
+                3,
+                2,
+                2,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                2,
+                2
+              ],
+              "swapCount": [
+                122,
+                107,
+                113,
+                124,
+                128,
+                131,
+                113,
+                116,
+                93,
+                72,
+                56,
+                34,
+                20,
+                6,
+                9,
+                5,
+                3,
+                3,
+                12,
+                30,
+                53,
+                65,
+                84,
+                93
+              ]
+            }
+          ]
+        },
+        "bodyText": null,
+        "headers": {
+          "access-control-allow-credentials": "true",
+          "access-control-allow-origin": "*",
+          "content-language": "en-US",
+          "content-length": "253",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Thu, 23 Apr 2026 05:12:37 GMT",
+          "etag": "W/\"fd-UUxfkWRko/lyUxYzvIx+mGdyrUU\"",
+          "x-powered-by": "Express"
+        },
+        "ok": true,
+        "status": 200
+      },
+      "timing": {
+        "finishedAtEpochMs": 1776921157921,
+        "startedAtEpochMs": 1776921157409
+      },
+      "transport": "xhr"
+    },
+    {
+      "capturedAt": "2026-04-23T05:12:56.954Z",
+      "capturedAtEpochMs": 1776921176954,
+      "endpoint": {
+        "key": "site-search",
+        "method": "GET",
+        "url": "https://gnop.nebula.gogoro.com/api/v1/gostation/site/search?companyId=6MyzkQeJ&hasInverter&page=1&perPage=10&photoIncluded&siteName=&siteRid="
+      },
+      "error": null,
+      "id": "evt_1776921176954_189g2j",
+      "page": {
+        "scope": {
+          "scopeType": "total",
+          "siteId": "",
+          "siteName": "ALL_SITES",
+          "siteRid": ""
+        },
+        "title": "GNOP - GoStation Statistics",
+        "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today?dimension=4&endDate=1776917700&fromDate=1776834900&gsIds&searchOption=site&siteIds&timeScale=hours"
+      },
+      "request": {
+        "bodyJson": null,
+        "bodyText": null,
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "client": "gnop",
+          "enop-sub": "gnop",
+          "language": "en-US",
+          "timezone": "+05:45"
+        }
+      },
+      "response": {
+        "bodyJson": [
+          {
+            "address": {
+              "address": {
+                "en-US": "sitapaila",
+                "local": "sitapaila"
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-2",
+                "name": {
+                  "en-US": "kathmandu",
+                  "undefined": "kathmandu"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "countOfSitePhotos": 0,
+            "createTime": 1753781754,
+            "creator": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "gsCount": 0,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "gsId": "XeVEKQML",
+                "gsName": "Bafal Testing Centre 2",
+                "gsRid": "NP4460025070047A",
+                "gsStatus": 203,
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 0,
+            "inverter": 0,
+            "latitude": 27.70239,
+            "longitude": 85.28241,
+            "operationDate": 1753781519,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "siteId": "530b7nMO",
+            "siteName": {
+              "en-US": "Bafal Testing centre 2",
+              "local": "Bafal Testing centre 2"
+            },
+            "siteRid": "NP4460025070047",
+            "status": 5,
+            "trial": 0,
+            "updateTime": 1754381054,
+            "visible": 1,
+            "vmType": 1
+          },
+          {
+            "address": {
+              "address": {
+                "en-US": "Balkhu Chowk, Next to Dakhshin Kali Oil Store",
+                "local": "Balkhu Chowk, Next to Dakhshin Kali Oil Store"
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-2",
+                "name": {
+                  "en-US": "kathmandu",
+                  "undefined": "kathmandu"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "countOfSitePhotos": 0,
+            "createTime": 1736412656,
+            "creator": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "gsCount": 1,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "equipmentCode": "V08WG240910000039M",
+                "gsId": "AMx7kD8G",
+                "gsName": "Balkhu Go station",
+                "gsRid": "NP446000046A",
+                "gsStatus": 1,
+                "hwVersion": "6.0",
+                "patchVersion": "PAT_20260401.020423",
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 8,
+            "inverter": 0,
+            "latitude": 27.68365,
+            "longitude": 85.29759,
+            "operationDate": 1736412569,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "siteId": "4eE2pB3v",
+            "siteName": {
+              "en-US": "Balkhu GoStation",
+              "local": "Balkhu GoStation"
+            },
+            "siteRid": "NP446000046",
+            "status": 1,
+            "trial": 0,
+            "updateTime": 1739338611,
+            "visible": 1,
+            "vmType": 1
+          },
+          {
+            "address": {
+              "address": {
+                "en-US": "Hama Oil, Swayambhu Pump",
+                "local": "Hama Oil, Swayambhu Pump"
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-2",
+                "name": {
+                  "en-US": "kathmandu",
+                  "undefined": "kathmandu"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "contactPerson": "supartik ",
+            "contactPersonEmail": "supartil.parajuli@nebulanp.com",
+            "contactPersonPhone": "9816080404",
+            "countOfSitePhotos": 0,
+            "createTime": 1736331250,
+            "creator": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "gsCount": 1,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "equipmentCode": "V08WG240910000038M",
+                "gsId": "P8pjz6e0",
+                "gsName": "Swayambhu Pump GoStation",
+                "gsRid": "NP446000045A",
+                "gsStatus": 1,
+                "hwVersion": "6.0",
+                "patchVersion": "PAT_20260401.020423",
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 8,
+            "inverter": 0,
+            "latitude": 27.71533,
+            "longitude": 85.28382,
+            "operationDate": 1736331173,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "siteId": "6MyVxPeJ",
+            "siteName": {
+              "en-US": "Swayambhu Pump GoStation",
+              "local": "Swayambhu Pump GoStation"
+            },
+            "siteRid": "NP446000045",
+            "status": 1,
+            "trial": 0,
+            "updateTime": 1755164244,
+            "visible": 1,
+            "vmType": 1
+          },
+          {
+            "address": {
+              "address": {
+                "en-US": "Metro Market, Pepsicola, Kathmandu",
+                "local": "Metro Market, Pepsicola, Kathmandu"
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-2",
+                "name": {
+                  "en-US": "kathmandu",
+                  "undefined": "kathmandu"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "countOfSitePhotos": 0,
+            "createTime": 1736330803,
+            "creator": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "gsCount": 1,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "equipmentCode": "V08WG240910000040M",
+                "gsId": "ze7Xr23k",
+                "gsName": "Pepsicola Metro Market GoStation",
+                "gsRid": "NP446000044A",
+                "gsStatus": 1,
+                "hwVersion": "6.0",
+                "patchVersion": "PAT_20260401.020423",
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 8,
+            "inverter": 0,
+            "latitude": 27.69258,
+            "longitude": 85.36706,
+            "operationDate": 1736330693,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "siteId": "d3Dgjoeg",
+            "siteName": {
+              "en-US": "Pepsicola Metro Market GoStation",
+              "local": "Pepsicola Metro Market GoStation"
+            },
+            "siteRid": "NP446000044",
+            "status": 1,
+            "trial": 0,
+            "updateTime": 1739337261,
+            "visible": 1,
+            "vmType": 1
+          },
+          {
+            "address": {
+              "address": {
+                "en-US": "Kapan Metro Market, Kathmandu",
+                "local": "Kapan Metro Market, Kathmandu"
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-2",
+                "name": {
+                  "en-US": "kathmandu",
+                  "undefined": "kathmandu"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "countOfSitePhotos": 0,
+            "createTime": 1736329991,
+            "creator": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "gsCount": 1,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "equipmentCode": "V08WG240910000042M",
+                "gsId": "786qQv3g",
+                "gsName": "Kapan Metro Market GoStation",
+                "gsRid": "NP446000043A",
+                "gsStatus": 1,
+                "hwVersion": "6.0",
+                "patchVersion": "PAT_20260401.020423",
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 8,
+            "inverter": 0,
+            "latitude": 27.7327,
+            "longitude": 85.36189,
+            "operationDate": 1736329917,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "siteId": "zMWA6732",
+            "siteName": {
+              "en-US": "Kapan MetroMarket GoStation",
+              "local": "Kapan MetroMarket GoStation"
+            },
+            "siteRid": "NP446000043",
+            "status": 1,
+            "trial": 0,
+            "updateTime": 1749098018,
+            "visible": 1,
+            "vmType": 1
+          },
+          {
+            "address": {
+              "address": {
+                "en-US": "Behind BYD showroom ",
+                "local": "Behind BYD showroom "
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-2",
+                "name": {
+                  "en-US": "kathmandu",
+                  "undefined": "kathmandu"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "contactPerson": "supartik ",
+            "contactPersonEmail": "supartik.parajuli@nebulanp.com",
+            "contactPersonPhone": "9816080404",
+            "countOfSitePhotos": 0,
+            "createTime": 1736238769,
+            "creator": {
+              "code": "42E5CE39",
+              "id": "k8JBXR8p",
+              "name": "Kamalesh Kumar"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "gsCount": 1,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "equipmentCode": "V08WG240910000002M",
+                "gsId": "6My6npeJ",
+                "gsName": "Naxal Showroom Gostation",
+                "gsRid": "NP446000042A",
+                "gsStatus": 1,
+                "hwVersion": "6.0",
+                "patchVersion": "PAT_20260401.020423",
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 8,
+            "inverter": 0,
+            "latitude": 27.71424,
+            "longitude": 85.32488,
+            "operationDate": 1736238786,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "siteId": "Z3Rv7J3d",
+            "siteName": {
+              "en-US": "Naxal Showroom GoStation",
+              "local": "Naxal Showroom GoStation"
+            },
+            "siteRid": "NP446000042",
+            "status": 1,
+            "trial": 0,
+            "updateTime": 1750395430,
+            "visible": 1,
+            "vmType": 1
+          },
+          {
+            "address": {
+              "address": {
+                "en-US": "Koila Multi Cuisine Restaurant, Dovan Pool, Chyasal, Kathmandu.",
+                "local": "Koila Multi Cuisine Restaurant, Dovan Pool, Chyasal, Kathmandu."
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-2",
+                "name": {
+                  "en-US": "kathmandu",
+                  "undefined": "kathmandu"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "countOfSitePhotos": 0,
+            "createTime": 1736227378,
+            "creator": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "gsCount": 1,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "equipmentCode": "V08WG240910000008M",
+                "gsId": "zMkk6zML",
+                "gsName": "Chyasal GoStation",
+                "gsRid": "NP446000041A",
+                "gsStatus": 1,
+                "hwVersion": "6.0",
+                "patchVersion": "PAT_20260401.020423",
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 8,
+            "inverter": 0,
+            "latitude": 27.6789,
+            "longitude": 85.33531,
+            "operationDate": 1736227293,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "siteId": "DeZLw18w",
+            "siteName": {
+              "en-US": "Chyasal Corridor GoStation",
+              "local": "Chyasal Corridor GoStation"
+            },
+            "siteRid": "NP446000041",
+            "status": 1,
+            "trial": 0,
+            "updateTime": 1749444438,
+            "visible": 1,
+            "vmType": 1
+          },
+          {
+            "address": {
+              "address": {
+                "en-US": "Gayatri Petrol Pump, Ekantakuna Chowk",
+                "local": "Gayatri Petrol Pump, Ekantakuna Chowk"
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-4",
+                "name": {
+                  "en-US": "lalitpur",
+                  "undefined": "lalitpur"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "countOfSitePhotos": 0,
+            "createTime": 1736227269,
+            "creator": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "gsCount": 1,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "equipmentCode": "V08WG240910000041M",
+                "gsId": "4eEqPAev",
+                "gsName": "Ekantakuna Pump GoStation",
+                "gsRid": "NP446000040A",
+                "gsStatus": 1,
+                "hwVersion": "6.0",
+                "patchVersion": "PAT_20260401.020423",
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 8,
+            "inverter": 0,
+            "latitude": 27.66642,
+            "longitude": 85.30793,
+            "operationDate": 1736227188,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "siteId": "530bjvMO",
+            "siteName": {
+              "en-US": "Ekantakuna Pump GoStation",
+              "local": "Ekantakuna Pump GoStation"
+            },
+            "siteRid": "NP446000040",
+            "status": 1,
+            "trial": 0,
+            "updateTime": 1749529848,
+            "visible": 1,
+            "vmType": 1
+          },
+          {
+            "address": {
+              "address": {
+                "en-US": "Mali Oil Store, Kalimati Chowk.",
+                "local": "Mali Oil Store, Kalimati Chowk."
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-2",
+                "name": {
+                  "en-US": "kathmandu",
+                  "undefined": "kathmandu"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "countOfSitePhotos": 0,
+            "createTime": 1736052179,
+            "creator": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "gsCount": 1,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "equipmentCode": "V08WG240910000031M",
+                "gsId": "Z3RE9Eed",
+                "gsName": "Kalimati Pump GoStation ",
+                "gsRid": "NP446000039A",
+                "gsStatus": 1,
+                "hwVersion": "6.0",
+                "patchVersion": "PAT_20260401.020423",
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 8,
+            "inverter": 0,
+            "latitude": 27.69868,
+            "longitude": 85.29981,
+            "operationDate": 1736052109,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "siteId": "D31gnKMj",
+            "siteName": {
+              "en-US": "Kalimati Pump GoStation",
+              "local": "Kalimati Pump GoStation"
+            },
+            "siteRid": "NP446000039",
+            "status": 1,
+            "trial": 0,
+            "updateTime": 1749703464,
+            "visible": 1,
+            "vmType": 1
+          },
+          {
+            "address": {
+              "address": {
+                "en-US": "Naryan Oil, Janagal, Banepa, Kavrepalanchowk",
+                "local": "Naryan Oil, Janagal, Banepa, Kavrepalanchowk"
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-2",
+                "name": {
+                  "en-US": "kathmandu",
+                  "undefined": "kathmandu"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "countOfSitePhotos": 0,
+            "createTime": 1736052093,
+            "creator": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "gsCount": 1,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "equipmentCode": "V08WG240910000032M",
+                "gsId": "Y8mNV6MN",
+                "gsName": "Banepa Pump GoStation",
+                "gsRid": "NP446000038A",
+                "gsStatus": 1,
+                "hwVersion": "6.0",
+                "patchVersion": "PAT_20260401.020423",
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 8,
+            "inverter": 0,
+            "latitude": 27.63217,
+            "longitude": 85.50796,
+            "operationDate": 1736052014,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "siteId": "Y3B7pL8a",
+            "siteName": {
+              "en-US": "Banepa Pump GoStation",
+              "local": "Banepa Pump GoStation"
+            },
+            "siteRid": "NP446000038",
+            "status": 1,
+            "trial": 0,
+            "updateTime": 1750929333,
+            "visible": 1,
+            "vmType": 1
+          }
+        ],
+        "bodyText": null,
+        "headers": {
+          "access-control-allow-credentials": "true",
+          "access-control-allow-origin": "*",
+          "content-language": "en-US",
+          "content-length": "19179",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Thu, 23 Apr 2026 05:12:56 GMT",
+          "etag": "W/\"4aeb-75/eZnTcsrXUoRqSs2d+kJt6clA\"",
+          "x-page": "1",
+          "x-per-page": "10",
+          "x-powered-by": "Express",
+          "x-total-count": "46"
+        },
+        "ok": true,
+        "status": 200
+      },
+      "timing": {
+        "finishedAtEpochMs": 1776921176921,
+        "startedAtEpochMs": 1776921176591
+      },
+      "transport": "xhr"
+    },
+    {
+      "capturedAt": "2026-04-23T05:13:03.253Z",
+      "capturedAtEpochMs": 1776921183253,
+      "endpoint": {
+        "key": "site-search",
+        "method": "GET",
+        "url": "https://gnop.nebula.gogoro.com/api/v1/gostation/site/search?companyId=6MyzkQeJ&hasInverter&page=1&perPage=10&photoIncluded&siteName=Na&siteRid="
+      },
+      "error": null,
+      "id": "evt_1776921183253_eottok",
+      "page": {
+        "scope": {
+          "scopeType": "total",
+          "siteId": "",
+          "siteName": "ALL_SITES",
+          "siteRid": ""
+        },
+        "title": "GNOP - GoStation Statistics",
+        "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today?dimension=4&endDate=1776917700&fromDate=1776834900&gsIds&searchOption=site&siteIds&timeScale=hours"
+      },
+      "request": {
+        "bodyJson": null,
+        "bodyText": null,
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "client": "gnop",
+          "enop-sub": "gnop",
+          "language": "en-US",
+          "timezone": "+05:45"
+        }
+      },
+      "response": {
+        "bodyJson": [
+          {
+            "address": {
+              "address": {
+                "en-US": "Behind BYD showroom ",
+                "local": "Behind BYD showroom "
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-2",
+                "name": {
+                  "en-US": "kathmandu",
+                  "undefined": "kathmandu"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "contactPerson": "supartik ",
+            "contactPersonEmail": "supartik.parajuli@nebulanp.com",
+            "contactPersonPhone": "9816080404",
+            "countOfSitePhotos": 0,
+            "createTime": 1736238769,
+            "creator": {
+              "code": "42E5CE39",
+              "id": "k8JBXR8p",
+              "name": "Kamalesh Kumar"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "gsCount": 1,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "equipmentCode": "V08WG240910000002M",
+                "gsId": "6My6npeJ",
+                "gsName": "Naxal Showroom Gostation",
+                "gsRid": "NP446000042A",
+                "gsStatus": 1,
+                "hwVersion": "6.0",
+                "patchVersion": "PAT_20260401.020423",
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 8,
+            "inverter": 0,
+            "latitude": 27.71424,
+            "longitude": 85.32488,
+            "operationDate": 1736238786,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "siteId": "Z3Rv7J3d",
+            "siteName": {
+              "en-US": "Naxal Showroom GoStation",
+              "local": "Naxal Showroom GoStation"
+            },
+            "siteRid": "NP446000042",
+            "status": 1,
+            "trial": 0,
+            "updateTime": 1750395430,
+            "visible": 1,
+            "vmType": 1
+          },
+          {
+            "address": {
+              "address": {
+                "en-US": "Gayatri Petrol Pump, Ekantakuna Chowk",
+                "local": "Gayatri Petrol Pump, Ekantakuna Chowk"
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-4",
+                "name": {
+                  "en-US": "lalitpur",
+                  "undefined": "lalitpur"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "countOfSitePhotos": 0,
+            "createTime": 1736227269,
+            "creator": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "gsCount": 1,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "equipmentCode": "V08WG240910000041M",
+                "gsId": "4eEqPAev",
+                "gsName": "Ekantakuna Pump GoStation",
+                "gsRid": "NP446000040A",
+                "gsStatus": 1,
+                "hwVersion": "6.0",
+                "patchVersion": "PAT_20260401.020423",
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 8,
+            "inverter": 0,
+            "latitude": 27.66642,
+            "longitude": 85.30793,
+            "operationDate": 1736227188,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "siteId": "530bjvMO",
+            "siteName": {
+              "en-US": "Ekantakuna Pump GoStation",
+              "local": "Ekantakuna Pump GoStation"
+            },
+            "siteRid": "NP446000040",
+            "status": 1,
+            "trial": 0,
+            "updateTime": 1749529848,
+            "visible": 1,
+            "vmType": 1
+          },
+          {
+            "address": {
+              "address": {
+                "en-US": "Dallu big mart ,Nayabazar ",
+                "local": "Dallu big mart ,Nayabazar "
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-2",
+                "name": {
+                  "en-US": "kathmandu",
+                  "undefined": "kathmandu"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "contactPerson": "supartik",
+            "contactPersonEmail": "Supartrik.Parajuli@nebulanp.com",
+            "contactPersonPhone": "9816080404",
+            "countOfSitePhotos": 0,
+            "createTime": 1735030213,
+            "creator": {
+              "code": "42E5CE39",
+              "id": "k8JBXR8p",
+              "name": "Kamalesh Kumar"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "gsCount": 1,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "equipmentCode": "V08WG240910000014M",
+                "gsId": "YelN9b8g",
+                "gsName": "Sunakothi BigMart GoStation",
+                "gsRid": "NP446000017A",
+                "gsStatus": 1,
+                "hwVersion": "6.0",
+                "patchVersion": "PAT_20260401.020423",
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 8,
+            "inverter": 0,
+            "latitude": 27.6295,
+            "longitude": 85.31838,
+            "operationDate": 1735030142,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "siteId": "gMa0g08E",
+            "siteName": {
+              "en-US": "Sunakothi BigMart GoStation",
+              "local": "Sunakothi BigMart GoStation"
+            },
+            "siteRid": "NP446000017",
+            "status": 1,
+            "trial": 0,
+            "updateTime": 1751884559,
+            "visible": 1,
+            "vmType": 1
+          },
+          {
+            "address": {
+              "address": {
+                "en-US": "Tinthana, Kalanki",
+                "local": "Tinthana, Kalanki"
+              },
+              "city": {
+                "code": "42-0",
+                "name": {
+                  "en-US": "bagmati",
+                  "undefined": "bagmati"
+                }
+              },
+              "district": {
+                "code": "42-0-2",
+                "name": {
+                  "en-US": "kathmandu",
+                  "undefined": "kathmandu"
+                }
+              },
+              "zip": "44600"
+            },
+            "availableTime": [
+              {
+                "day": "monday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "tuesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "wednesday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "thursday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "friday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "saturday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              },
+              {
+                "day": "sunday",
+                "time": [
+                  {
+                    "from": "00:00",
+                    "to": "23:59"
+                  }
+                ]
+              }
+            ],
+            "category": {},
+            "company": {
+              "code": "900181",
+              "country": "NP",
+              "id": "6MyzkQeJ",
+              "name": "Nebula Energy Pvt. Ltd"
+            },
+            "countOfSitePhotos": 0,
+            "createTime": 1734240212,
+            "creator": {
+              "code": "00001",
+              "id": "l3rg5Z8r",
+              "name": "Supratik Parajuli"
+            },
+            "departmentId": "530jgAMO",
+            "engineer": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "gsCount": 1,
+            "gsList": [
+              {
+                "chargerCount": 8,
+                "equipmentCode": "V08WG240910000013M",
+                "gsId": "786q7v3g",
+                "gsName": "Tinthana BigMart GoStation ",
+                "gsRid": "NP446000008A",
+                "gsStatus": 1,
+                "hwVersion": "6.0",
+                "patchVersion": "PAT_20260401.020423",
+                "slotCount": 8,
+                "typeA": 1,
+                "typeB": 0
+              }
+            ],
+            "gsSlots": 8,
+            "inverter": 0,
+            "latitude": 27.68734,
+            "longitude": 85.26917,
+            "operationDate": 1734240047,
+            "operationGroup": {
+              "division": {
+                "code": "DIVISION",
+                "id": "530jgAMO",
+                "name": "Operation Department"
+              },
+              "region": {
+                "code": "A52C7576",
+                "id": "zMv7laev",
+                "name": "Operation Department - Region"
+              },
+              "section": {
+                "code": "SECTION",
+                "id": "D31n2R8j",
+                "name": "Operation Department - Section"
+              }
+            },
+            "photos": [],
+            "reviser": {
+              "code": "00002",
+              "id": "53071OeO",
+              "name": "Rohan Joshi"
+            },
+            "siteId": "4eE2wB3v",
+            "siteName": {
+              "en-US": "Tinthana Bigmart GoStation",
+              "local": "Tinthana Bigmart GoStation"
+            },
+            "siteRid": "NP446000008",
+            "status": 1,
+            "trial": 0,
+            "updateTime": 1749011190,
+            "visible": 1,
+            "vmType": 1
+          }
+        ],
+        "bodyText": null,
+        "headers": {
+          "access-control-allow-credentials": "true",
+          "access-control-allow-origin": "*",
+          "content-language": "en-US",
+          "content-length": "7787",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Thu, 23 Apr 2026 05:13:02 GMT",
+          "etag": "W/\"1e6b-wjA9vaCeEIhiRjfUUNBzgo+uhL4\"",
+          "x-page": "1",
+          "x-per-page": "10",
+          "x-powered-by": "Express",
+          "x-total-count": "4"
+        },
+        "ok": true,
+        "status": 200
+      },
+      "timing": {
+        "finishedAtEpochMs": 1776921183238,
+        "startedAtEpochMs": 1776921182949
+      },
+      "transport": "xhr"
+    },
+    {
+      "capturedAt": "2026-04-23T05:13:14.148Z",
+      "capturedAtEpochMs": 1776921194148,
+      "endpoint": {
+        "key": "swap-summary",
+        "method": "POST",
+        "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/swap-summary"
+      },
+      "error": null,
+      "id": "evt_1776921194148_igxmsc",
+      "page": {
+        "scope": {
+          "scopeType": "total",
+          "siteId": "",
+          "siteName": "ALL_SITES",
+          "siteRid": ""
+        },
+        "title": "GNOP - GoStation Statistics",
+        "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today?dimension=4&endDate=1776917700&fromDate=1776834900&gsIds&searchOption=site&siteIds&timeScale=hours"
+      },
+      "request": {
+        "bodyJson": {
+          "dimension": 4,
+          "reportSetting": {
+            "endDate": 1776917700,
+            "fromDate": 1776834900,
+            "timeScale": "hours"
+          },
+          "siteIds": [
+            "Z3Rv7J3d"
+          ]
+        },
+        "bodyText": null,
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "client": "gnop",
+          "content-type": "application/json",
+          "enop-sub": "gnop",
+          "language": "en-US",
+          "timezone": "+05:45"
+        }
+      },
+      "response": {
+        "bodyJson": {
+          "reportSetting": {
+            "endDate": 1776917700,
+            "fromDate": 1776834900,
+            "timeScale": "hours"
+          },
+          "series": [
+            {
+              "socBelowEightyCount": [
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0
+              ],
+              "socBelowEightyFiveCount": [
+                2,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                1
+              ],
+              "socBelowNinetyCount": [
+                5,
+                1,
+                3,
+                1,
+                2,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                2
+              ],
+              "totalAh": [
+                81.86,
+                80.23,
+                41.09,
+                95.6,
+                48.11,
+                0,
+                31.71,
+                87.86,
+                12.79,
+                11.28,
+                0,
+                24.39,
+                26.78,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                140.82,
+                59.55
+              ],
+              "totalKm": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "bodyText": null,
+        "headers": {
+          "access-control-allow-credentials": "true",
+          "access-control-allow-origin": "*",
+          "content-language": "en-US",
+          "content-length": "487",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Thu, 23 Apr 2026 05:13:13 GMT",
+          "etag": "W/\"1e7-chXp1UtYTxpprJVGXJTM7L7BFK4\"",
+          "x-powered-by": "Express"
+        },
+        "ok": true,
+        "status": 200
+      },
+      "timing": {
+        "finishedAtEpochMs": 1776921194133,
+        "startedAtEpochMs": 1776921193903
+      },
+      "transport": "xhr"
+    },
+    {
+      "capturedAt": "2026-04-23T05:13:14.261Z",
+      "capturedAtEpochMs": 1776921194261,
+      "endpoint": {
+        "key": "swap-count",
+        "method": "POST",
+        "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/swap-count"
+      },
+      "error": null,
+      "id": "evt_1776921194261_qyv77x",
+      "page": {
+        "scope": {
+          "scopeType": "total",
+          "siteId": "",
+          "siteName": "ALL_SITES",
+          "siteRid": ""
+        },
+        "title": "GNOP - GoStation Statistics",
+        "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today?dimension=4&endDate=1776917700&fromDate=1776834900&gsIds&searchOption=site&siteIds&timeScale=hours"
+      },
+      "request": {
+        "bodyJson": {
+          "dimension": 2,
+          "reportSetting": {
+            "endDate": 1776917700,
+            "fromDate": 1776834900,
+            "timeScale": "hours"
+          },
+          "siteIds": [
+            "Z3Rv7J3d"
+          ]
+        },
+        "bodyText": null,
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "client": "gnop",
+          "content-type": "application/json",
+          "enop-sub": "gnop",
+          "language": "en-US",
+          "timezone": "+05:45"
+        }
+      },
+      "response": {
+        "bodyJson": {
+          "reportSetting": {
+            "endDate": 1776917700,
+            "fromDate": 1776834900,
+            "timeScale": "hours"
+          },
+          "series": [
+            {
+              "gsId": "6My6npeJ",
+              "gsName": {
+                "en-US": "Naxal Showroom Gostation"
+              },
+              "swapCount": [
+                5,
+                4,
+                3,
+                5,
+                2,
+                0,
+                2,
+                6,
+                1,
+                1,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                7,
+                3
+              ]
+            }
+          ]
+        },
+        "bodyText": null,
+        "headers": {
+          "access-control-allow-credentials": "true",
+          "access-control-allow-origin": "*",
+          "content-language": "en-US",
+          "content-length": "221",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Thu, 23 Apr 2026 05:13:13 GMT",
+          "etag": "W/\"dd-TA0zq1EuNm/tXwEAMyuFVsMBBa0\"",
+          "x-powered-by": "Express"
+        },
+        "ok": true,
+        "status": 200
+      },
+      "timing": {
+        "finishedAtEpochMs": 1776921194143,
+        "startedAtEpochMs": 1776921193902
+      },
+      "transport": "xhr"
+    }
+  ]
+}

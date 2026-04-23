@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Superrr-Tick GNOP Workbook Export</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1>Superrr-Tick GNOP Workbook Export</h1>
+        <p>One workbook, one Total sheet, one sheet per site.</p>
+      </header>
+
+      <section class="panel">
+        <p class="hint">
+          The workbook uses the active GNOP report page range when available.
+        </p>
+        <div class="mode-row">
+          <button id="presetModeBtn" class="mode-btn active" type="button">
+            Preset range
+          </button>
+          <button id="customModeBtn" class="mode-btn" type="button">
+            Custom range
+          </button>
+        </div>
+
+        <div id="presetPanel" class="range-panel">
+          <label>
+            Preset range
+            <select id="timeScale">
+              <option value="day">Day</option>
+              <option value="week">Week</option>
+              <option value="month">Month</option>
+            </select>
+          </label>
+        </div>
+
+        <div id="customPanel" class="range-panel hidden">
+          <div class="range-grid">
+            <label>
+              Start date
+              <input id="startDate" type="date" />
+            </label>
+            <label>
+              End date
+              <input id="endDate" type="date" />
+            </label>
+          </div>
+        </div>
+
+        <label>
+          Timezone
+          <input id="timezoneHeader" type="text" value="+05:45" />
+        </label>
+      </section>
+
+      <section class="panel progress-panel">
+        <div class="progress-header">
+          <strong>Export progress</strong>
+          <span id="progressLabel">Idle</span>
+        </div>
+        <div class="progress-bar">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+        <div class="progress-meta">
+          <span id="progressStage">Waiting</span>
+          <span id="progressPercent">0%</span>
+        </div>
+      </section>
+
+      <section class="panel status" aria-live="polite">
+        <div><strong>Capture:</strong> <span id="captureState">-</span></div>
+        <div>
+          <strong>Total events:</strong> <span id="totalEvents">0</span>
+        </div>
+        <div>
+          <strong>Requests:</strong> <span id="requestScopeSummary">{}</span>
+        </div>
+        <div>
+          <strong>Last capture:</strong> <span id="lastCapturedAt">-</span>
+        </div>
+      </section>
+
+      <section class="panel counts">
+        <h2>Latest page meta</h2>
+        <pre id="latestPageMeta">{}</pre>
+      </section>
+
+      <section class="actions single">
+        <button id="downloadWorkbookBtn" class="primary" type="button">
+          Download Excel workbook
+        </button>
+      </section>
+
+      <details class="panel debug-panel">
+        <summary>Debug / capture controls</summary>
+        <div class="debug-grid">
+          <button id="refreshBtn" type="button">Refresh status</button>
+          <button id="toggleBtn" type="button">Pause capture</button>
+          <button id="clearBtn" type="button">Clear captures</button>
+          <button id="downloadCaptureBtn" type="button">
+            Download capture JSON
+          </button>
+        </div>
+      </details>
+    </main>
+    <script src="xlsx-writer.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

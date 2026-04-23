@@ -1,0 +1,659 @@
+{
+  "exportedAt": "2026-04-23T05:14:16.352Z",
+  "exportedAtEpochMs": 1776921256352,
+  "extension": {
+    "name": "GNOP Discovery Capture",
+    "version": "0.1.0"
+  },
+  "captureConfig": {
+    "enabled": true,
+    "maxEvents": 2500,
+    "onlyDashboardDefaultDate": true,
+    "totalMeansNoSiteSelection": true
+  },
+  "summary": {
+    "totalEvents": 2,
+    "byEndpoint": {
+      "swap-summary": 1,
+      "swap-count": 1
+    },
+    "byScopeType": {
+      "site": 2
+    }
+  },
+  "samples": {
+    "swap-count": {
+      "total": null,
+      "site": {
+        "capturedAt": "2026-04-23T05:14:13.114Z",
+        "capturedAtEpochMs": 1776921253114,
+        "endpoint": {
+          "key": "swap-count",
+          "method": "POST",
+          "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/swap-count"
+        },
+        "error": null,
+        "id": "evt_1776921253114_o8gzxv",
+        "page": {
+          "scope": {
+            "scopeType": "site",
+            "siteId": "4eE2pB3v",
+            "siteName": "Balkhu GoStation",
+            "siteRid": "NP446000046"
+          },
+          "title": "GNOP - GoStation Statistics",
+          "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today?_gsList&_siteList=NP446000046%5E%7B%22local%22%3A%22Balkhu%20GoStation%22%2C%22en-US%22%3A%22Balkhu%20GoStation%22%7D%5E4eE2pB3v&dimension=4&endDate=1776917700&fromDate=1776834900&gsIds&page=1&searchOption=site&siteIds&siteList=NP446000042%5E%7B%22local%22%3A%22Naxal%20Showroom%20GoStation%22%2C%22en-US%22%3A%22Naxal%20Showroom%20GoStation%22%7D%5EZ3Rv7J3d&timeScale=hours"
+        },
+        "request": {
+          "bodyJson": {
+            "dimension": 2,
+            "reportSetting": {
+              "endDate": 1776917700,
+              "fromDate": 1776834900,
+              "timeScale": "hours"
+            },
+            "siteIds": [
+              "4eE2pB3v"
+            ]
+          },
+          "bodyText": null,
+          "headers": {
+            "accept": "application/json, text/plain, */*",
+            "client": "gnop",
+            "content-type": "application/json",
+            "enop-sub": "gnop",
+            "language": "en-US",
+            "timezone": "+05:45"
+          }
+        },
+        "response": {
+          "bodyJson": {
+            "reportSetting": {
+              "endDate": 1776917700,
+              "fromDate": 1776834900,
+              "timeScale": "hours"
+            },
+            "series": [
+              {
+                "gsId": "AMx7kD8G",
+                "gsName": {
+                  "en-US": "Balkhu Go station"
+                },
+                "swapCount": [
+                  4,
+                  5,
+                  3,
+                  1,
+                  5,
+                  2,
+                  4,
+                  4,
+                  3,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  2,
+                  2,
+                  1,
+                  1,
+                  2
+                ]
+              }
+            ]
+          },
+          "bodyText": null,
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-origin": "*",
+            "content-language": "en-US",
+            "content-length": "214",
+            "content-type": "application/json; charset=utf-8",
+            "date": "Thu, 23 Apr 2026 05:14:12 GMT",
+            "etag": "W/\"d6-PCvI3NrLMqVemwPISSDXdKiN7+w\"",
+            "x-powered-by": "Express"
+          },
+          "ok": true,
+          "status": 200
+        },
+        "timing": {
+          "finishedAtEpochMs": 1776921253065,
+          "startedAtEpochMs": 1776921252816
+        },
+        "transport": "xhr"
+      }
+    },
+    "swap-summary": {
+      "total": null,
+      "site": {
+        "capturedAt": "2026-04-23T05:14:13.029Z",
+        "capturedAtEpochMs": 1776921253029,
+        "endpoint": {
+          "key": "swap-summary",
+          "method": "POST",
+          "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/swap-summary"
+        },
+        "error": null,
+        "id": "evt_1776921253029_s3rwsn",
+        "page": {
+          "scope": {
+            "scopeType": "site",
+            "siteId": "4eE2pB3v",
+            "siteName": "Balkhu GoStation",
+            "siteRid": "NP446000046"
+          },
+          "title": "GNOP - GoStation Statistics",
+          "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today?_gsList&_siteList=NP446000046%5E%7B%22local%22%3A%22Balkhu%20GoStation%22%2C%22en-US%22%3A%22Balkhu%20GoStation%22%7D%5E4eE2pB3v&dimension=4&endDate=1776917700&fromDate=1776834900&gsIds&page=1&searchOption=site&siteIds&siteList=NP446000042%5E%7B%22local%22%3A%22Naxal%20Showroom%20GoStation%22%2C%22en-US%22%3A%22Naxal%20Showroom%20GoStation%22%7D%5EZ3Rv7J3d&timeScale=hours"
+        },
+        "request": {
+          "bodyJson": {
+            "dimension": 4,
+            "reportSetting": {
+              "endDate": 1776917700,
+              "fromDate": 1776834900,
+              "timeScale": "hours"
+            },
+            "siteIds": [
+              "4eE2pB3v"
+            ]
+          },
+          "bodyText": null,
+          "headers": {
+            "accept": "application/json, text/plain, */*",
+            "client": "gnop",
+            "content-type": "application/json",
+            "enop-sub": "gnop",
+            "language": "en-US",
+            "timezone": "+05:45"
+          }
+        },
+        "response": {
+          "bodyJson": {
+            "reportSetting": {
+              "endDate": 1776917700,
+              "fromDate": 1776834900,
+              "timeScale": "hours"
+            },
+            "series": [
+              {
+                "socBelowEightyCount": [
+                  0,
+                  3,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "socBelowEightyFiveCount": [
+                  0,
+                  3,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "socBelowNinetyCount": [
+                  1,
+                  4,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  2,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "totalAh": [
+                  65.49,
+                  89.39,
+                  63.27,
+                  20.15,
+                  91.96,
+                  27.17,
+                  66.68,
+                  56.06,
+                  37.74,
+                  32.8,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  14.31,
+                  34.46,
+                  41.23,
+                  15.4,
+                  20.83,
+                  46.85
+                ],
+                "totalKm": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ]
+          },
+          "bodyText": null,
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-origin": "*",
+            "content-language": "en-US",
+            "content-length": "497",
+            "content-type": "application/json; charset=utf-8",
+            "date": "Thu, 23 Apr 2026 05:14:12 GMT",
+            "etag": "W/\"1f1-8Kubwpu0DkUGIq1j26MCQxSoLWc\"",
+            "x-powered-by": "Express"
+          },
+          "ok": true,
+          "status": 200
+        },
+        "timing": {
+          "finishedAtEpochMs": 1776921253021,
+          "startedAtEpochMs": 1776921252816
+        },
+        "transport": "xhr"
+      }
+    }
+  },
+  "pageMetaByTabId": {
+    "1306652867": {
+      "pageUrl": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today?_gsList&_siteList=NP446000046%5E%7B%22local%22%3A%22Balkhu%20GoStation%22%2C%22en-US%22%3A%22Balkhu%20GoStation%22%7D%5E4eE2pB3v&dimension=4&endDate=1776917700&fromDate=1776834900&gsIds&page=1&searchOption=site&siteIds&siteList=NP446000042%5E%7B%22local%22%3A%22Naxal%20Showroom%20GoStation%22%2C%22en-US%22%3A%22Naxal%20Showroom%20GoStation%22%7D%5EZ3Rv7J3d&timeScale=hours",
+      "seenAt": "2026-04-23T05:14:12.646Z",
+      "timezone": "Asia/Katmandu",
+      "timezoneOffsetMinutes": -345,
+      "title": "GNOP - GoStation Statistics"
+    }
+  },
+  "events": [
+    {
+      "capturedAt": "2026-04-23T05:14:13.029Z",
+      "capturedAtEpochMs": 1776921253029,
+      "endpoint": {
+        "key": "swap-summary",
+        "method": "POST",
+        "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/swap-summary"
+      },
+      "error": null,
+      "id": "evt_1776921253029_s3rwsn",
+      "page": {
+        "scope": {
+          "scopeType": "site",
+          "siteId": "4eE2pB3v",
+          "siteName": "Balkhu GoStation",
+          "siteRid": "NP446000046"
+        },
+        "title": "GNOP - GoStation Statistics",
+        "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today?_gsList&_siteList=NP446000046%5E%7B%22local%22%3A%22Balkhu%20GoStation%22%2C%22en-US%22%3A%22Balkhu%20GoStation%22%7D%5E4eE2pB3v&dimension=4&endDate=1776917700&fromDate=1776834900&gsIds&page=1&searchOption=site&siteIds&siteList=NP446000042%5E%7B%22local%22%3A%22Naxal%20Showroom%20GoStation%22%2C%22en-US%22%3A%22Naxal%20Showroom%20GoStation%22%7D%5EZ3Rv7J3d&timeScale=hours"
+      },
+      "request": {
+        "bodyJson": {
+          "dimension": 4,
+          "reportSetting": {
+            "endDate": 1776917700,
+            "fromDate": 1776834900,
+            "timeScale": "hours"
+          },
+          "siteIds": [
+            "4eE2pB3v"
+          ]
+        },
+        "bodyText": null,
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "client": "gnop",
+          "content-type": "application/json",
+          "enop-sub": "gnop",
+          "language": "en-US",
+          "timezone": "+05:45"
+        }
+      },
+      "response": {
+        "bodyJson": {
+          "reportSetting": {
+            "endDate": 1776917700,
+            "fromDate": 1776834900,
+            "timeScale": "hours"
+          },
+          "series": [
+            {
+              "socBelowEightyCount": [
+                0,
+                3,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "socBelowEightyFiveCount": [
+                0,
+                3,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "socBelowNinetyCount": [
+                1,
+                4,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                2,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "totalAh": [
+                65.49,
+                89.39,
+                63.27,
+                20.15,
+                91.96,
+                27.17,
+                66.68,
+                56.06,
+                37.74,
+                32.8,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                14.31,
+                34.46,
+                41.23,
+                15.4,
+                20.83,
+                46.85
+              ],
+              "totalKm": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "bodyText": null,
+        "headers": {
+          "access-control-allow-credentials": "true",
+          "access-control-allow-origin": "*",
+          "content-language": "en-US",
+          "content-length": "497",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Thu, 23 Apr 2026 05:14:12 GMT",
+          "etag": "W/\"1f1-8Kubwpu0DkUGIq1j26MCQxSoLWc\"",
+          "x-powered-by": "Express"
+        },
+        "ok": true,
+        "status": 200
+      },
+      "timing": {
+        "finishedAtEpochMs": 1776921253021,
+        "startedAtEpochMs": 1776921252816
+      },
+      "transport": "xhr"
+    },
+    {
+      "capturedAt": "2026-04-23T05:14:13.114Z",
+      "capturedAtEpochMs": 1776921253114,
+      "endpoint": {
+        "key": "swap-count",
+        "method": "POST",
+        "url": "https://gnop.nebula.gogoro.com/api/v1/reports/gs-statistic/swap-count"
+      },
+      "error": null,
+      "id": "evt_1776921253114_o8gzxv",
+      "page": {
+        "scope": {
+          "scopeType": "site",
+          "siteId": "4eE2pB3v",
+          "siteName": "Balkhu GoStation",
+          "siteRid": "NP446000046"
+        },
+        "title": "GNOP - GoStation Statistics",
+        "url": "https://gnop.nebula.gogoro.com/report/gs-statistic/swap-summary/today?_gsList&_siteList=NP446000046%5E%7B%22local%22%3A%22Balkhu%20GoStation%22%2C%22en-US%22%3A%22Balkhu%20GoStation%22%7D%5E4eE2pB3v&dimension=4&endDate=1776917700&fromDate=1776834900&gsIds&page=1&searchOption=site&siteIds&siteList=NP446000042%5E%7B%22local%22%3A%22Naxal%20Showroom%20GoStation%22%2C%22en-US%22%3A%22Naxal%20Showroom%20GoStation%22%7D%5EZ3Rv7J3d&timeScale=hours"
+      },
+      "request": {
+        "bodyJson": {
+          "dimension": 2,
+          "reportSetting": {
+            "endDate": 1776917700,
+            "fromDate": 1776834900,
+            "timeScale": "hours"
+          },
+          "siteIds": [
+            "4eE2pB3v"
+          ]
+        },
+        "bodyText": null,
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "client": "gnop",
+          "content-type": "application/json",
+          "enop-sub": "gnop",
+          "language": "en-US",
+          "timezone": "+05:45"
+        }
+      },
+      "response": {
+        "bodyJson": {
+          "reportSetting": {
+            "endDate": 1776917700,
+            "fromDate": 1776834900,
+            "timeScale": "hours"
+          },
+          "series": [
+            {
+              "gsId": "AMx7kD8G",
+              "gsName": {
+                "en-US": "Balkhu Go station"
+              },
+              "swapCount": [
+                4,
+                5,
+                3,
+                1,
+                5,
+                2,
+                4,
+                4,
+                3,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                2,
+                2,
+                1,
+                1,
+                2
+              ]
+            }
+          ]
+        },
+        "bodyText": null,
+        "headers": {
+          "access-control-allow-credentials": "true",
+          "access-control-allow-origin": "*",
+          "content-language": "en-US",
+          "content-length": "214",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Thu, 23 Apr 2026 05:14:12 GMT",
+          "etag": "W/\"d6-PCvI3NrLMqVemwPISSDXdKiN7+w\"",
+          "x-powered-by": "Express"
+        },
+        "ok": true,
+        "status": 200
+      },
+      "timing": {
+        "finishedAtEpochMs": 1776921253065,
+        "startedAtEpochMs": 1776921252816
+      },
+      "transport": "xhr"
+    }
+  ]
+}

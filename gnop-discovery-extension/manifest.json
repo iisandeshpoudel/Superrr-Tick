@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "GNOP Discovery Capture",
+  "version": "0.1.0",
+  "description": "Captures GNOP request/response payloads for discovery before building the extractor.",
+  "permissions": [
+    "storage",
+    "downloads",
+    "tabs",
+    "unlimitedStorage"
+  ],
+  "host_permissions": [
+    "https://gnop.nebula.gogoro.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "GNOP Discovery",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://gnop.nebula.gogoro.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "inpage.js",
+        "xlsx-writer.js",
+        "report-export.js"
+      ],
+      "matches": [
+        "https://gnop.nebula.gogoro.com/*"
+      ]
+    }
+  ]
+}
