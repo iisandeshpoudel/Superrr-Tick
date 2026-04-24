@@ -33,12 +33,10 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "inpage.js",
-        "xlsx-writer.js",
-        "report-export.js"
+        "inpage.js"
       ],
       "matches": [
-        "https://gnop.nebula.gogoro.com/*"
+        "https://*/*"
       ]
     }
   ]

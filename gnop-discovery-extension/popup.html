@@ -27,14 +27,12 @@
         </div>
 
         <div id="presetPanel" class="range-panel">
-          <label>
-            Preset range
-            <select id="timeScale">
-              <option value="day">Day</option>
-              <option value="week">Week</option>
-              <option value="month">Month</option>
-            </select>
-          </label>
+          <div id="timeScaleGroup" class="preset-group" role="tablist" aria-label="Preset range">
+            <button class="scale-btn" type="button" data-scale="day">Day</button>
+            <button class="scale-btn" type="button" data-scale="week">Week</button>
+            <button class="scale-btn active" type="button" data-scale="month">Month</button>
+          </div>
+          <p class="hint compact">Day = last 1 day. Week = last 7 days. Month = last 30 days.</p>
         </div>
 
         <div id="customPanel" class="range-panel hidden">
@@ -50,9 +48,10 @@
           </div>
         </div>
 
-        <label>
-          Timezone
-          <input id="timezoneHeader" type="text" value="+05:45" />
+        <label class="timezone-field">
+          Nepali Time
+          <input id="timezoneHeader" type="text" value="+05:45" readonly />
+          <span class="field-note">Sent to GNOP as UTC+05:45</span>
         </label>
       </section>
 

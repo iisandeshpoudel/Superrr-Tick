@@ -43,6 +43,30 @@
     return textEncoder.encode(String(text));
   }
 
+  function toBytes(value) {
+    if (value == null) {
+      return new Uint8Array(0);
+    }
+
+    if (typeof value === "string") {
+      return utf8Bytes(value);
+    }
+
+    if (value instanceof ArrayBuffer) {
+      return new Uint8Array(value);
+    }
+
+    if (ArrayBuffer.isView(value)) {
+      return new Uint8Array(value.buffer, value.byteOffset, value.byteLength);
+    }
+
+    if (Array.isArray(value)) {
+      return Uint8Array.from(value);
+    }
+
+    return utf8Bytes(String(value));
+  }
+
   function crc32(bytes) {
     let crc = 0xffffffff;
     for (let i = 0; i < bytes.length; i += 1) {
@@ -132,16 +156,9 @@
     return `  <cols>\n${cols.join("\n")}\n  </cols>`;
   }
 
-  function buildSheetViewXml() {
-    return `  <sheetViews>\n    <sheetView workbookViewId="0" tabSelected="1">\n      <pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/>\n      <selection pane="bottomLeft" activeCell="A2" sqref="A2"/>\n    </sheetView>\n  </sheetViews>`;
-  }
-
-  function buildAutoFilterRef(columns, rowCount) {
-    if (!columns.length || rowCount < 1) {
-      return "";
-    }
-    const lastCol = columnLetter(columns.length);
-    return `A1:${lastCol}${rowCount + 1}`;
+  function buildSheetViewXml(isSelected) {
+    const selectedAttr = isSelected ? ' tabSelected="1"' : "";
+    return `  <sheetViews>\n    <sheetView workbookViewId="0"${selectedAttr}>\n      <pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/>\n      <selection pane="bottomLeft" activeCell="A2" sqref="A2"/>\n    </sheetView>\n  </sheetViews>`;
   }
 
   function headerStyleForColumn(columnKey) {
@@ -163,11 +180,11 @@
     }
   }
 
-  function dataStyleForValue(value) {
+  function dataStyleForCell(value) {
     return typeof value === "number" && Number.isFinite(value) ? 1 : 0;
   }
 
-  function buildWorksheetXml(sheet) {
+  function buildWorksheetXml(sheet, isSelected = false) {
     const columns = sheet.columns || [];
     const rows = Array.isArray(sheet.rows) ? sheet.rows : [];
     const allRows = [];
@@ -186,17 +203,16 @@
       const isHeader = rowIndex === 0;
       const cells = columns.map((column, columnIndex) => {
         const reference = buildCellRef(columnIndex, rowIndex);
-        const styleIndex = isHeader ? headerStyleForColumn(column.key) : dataStyleForValue(row[column.key]);
+        const styleIndex = isHeader ? headerStyleForColumn(column.key) : dataStyleForCell(row[column.key]);
         return xmlCellWithStyle(reference, row[column.key], styleIndex);
       });
-      return `  <row r="${rowIndex + 1}">
+      const rowHeight = isHeader ? 24 : 20;
+      return `  <row r="${rowIndex + 1}" ht="${rowHeight}" customHeight="1">
 ${cells.join("\n")}
   </row>`;
     });
 
-    const autoFilterRef = buildAutoFilterRef(columns, rows.length);
-
-    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">\n${buildSheetViewXml()}\n${buildColXml(columns)}\n  <sheetData>\n${rowXml.join("\n")}\n  </sheetData>${autoFilterRef ? `\n  <autoFilter ref="${autoFilterRef}"/>` : ""}\n</worksheet>`;
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">\n  <sheetFormatPr defaultRowHeight="20" customHeight="1"/>\n${buildSheetViewXml(isSelected)}\n${buildColXml(columns)}\n  <sheetData>\n${rowXml.join("\n")}\n  </sheetData>\n</worksheet>`;
   }
 
   function buildWorkbookXml(sheets) {
@@ -263,12 +279,12 @@ ${cells.join("\n")}
     <fill><patternFill patternType="none"/></fill>
     <fill><patternFill patternType="gray125"/></fill>
     <fill><patternFill patternType="solid"><fgColor rgb="FFFFFFFF"/><bgColor indexed="64"/></patternFill></fill>
-    <fill><patternFill patternType="solid"><fgColor rgb="FF111111"/><bgColor indexed="64"/></patternFill></fill>
-    <fill><patternFill patternType="solid"><fgColor rgb="FFFF5D2D"/><bgColor indexed="64"/></patternFill></fill>
-    <fill><patternFill patternType="solid"><fgColor rgb="FFF7C948"/><bgColor indexed="64"/></patternFill></fill>
     <fill><patternFill patternType="solid"><fgColor rgb="FF2358FF"/><bgColor indexed="64"/></patternFill></fill>
-    <fill><patternFill patternType="solid"><fgColor rgb="FF27A844"/><bgColor indexed="64"/></patternFill></fill>
-    <fill><patternFill patternType="solid"><fgColor rgb="FF7B61FF"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFDCE8F8"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFF4D9D4"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFE6EFE6"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFE6E0FB"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFF5E1A4"/><bgColor indexed="64"/></patternFill></fill>
   </fills>
   <borders count="2">
     <border><left/><right/><top/><bottom/><diagonal/></border>
@@ -287,19 +303,19 @@ ${cells.join("\n")}
     <xf numFmtId="0" fontId="1" fillId="3" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <xf numFmtId="0" fontId="2" fillId="4" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+    <xf numFmtId="0" fontId="0" fillId="4" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <xf numFmtId="0" fontId="2" fillId="5" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+    <xf numFmtId="0" fontId="0" fillId="5" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <xf numFmtId="0" fontId="1" fillId="6" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+    <xf numFmtId="0" fontId="0" fillId="6" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <xf numFmtId="0" fontId="2" fillId="7" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+    <xf numFmtId="0" fontId="0" fillId="7" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <xf numFmtId="0" fontId="1" fillId="8" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+    <xf numFmtId="0" fontId="0" fillId="8" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
   </cellXfs>
@@ -330,7 +346,7 @@ ${cells.join("\n")}
 
     for (const entry of entries) {
       const nameBytes = utf8Bytes(entry.name);
-      const dataBytes = entry.data instanceof Uint8Array ? entry.data : utf8Bytes(entry.data);
+      const dataBytes = toBytes(entry.data);
       const crc = crc32(dataBytes);
       const localHeader = concatBytes([
         Uint8Array.from(u32(ZIP_LOCAL_FILE_HEADER)),
@@ -406,7 +422,7 @@ ${cells.join("\n")}
     safeSheets.forEach((sheet, index) => {
       entries.push({
         name: `xl/worksheets/sheet${index + 1}.xml`,
-        data: utf8Bytes(buildWorksheetXml(sheet))
+        data: utf8Bytes(buildWorksheetXml(sheet, index === 0))
       });
     });
 

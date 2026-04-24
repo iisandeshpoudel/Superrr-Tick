@@ -1,5 +1,8 @@
 const DEFAULT_TIMEZONE = "+05:45";
+const NEPAL_OFFSET_MS = (5 * 60 + 45) * 60 * 1000;
 let exportInProgress = false;
+let selectedPresetScale = "month";
+let workspaceActive = false;
 
 function sendMessage(message) {
   return new Promise((resolve, reject) => {
@@ -33,12 +36,37 @@ function setValue(id, value) {
   }
 }
 
+function setPresetScale(scale) {
+  selectedPresetScale = scale || "day";
+  const buttons = document.querySelectorAll(".scale-btn");
+  buttons.forEach((button) => {
+    button.classList.toggle("active", button.dataset.scale === scale);
+  });
+}
+
+function normalizePresetScale(scale) {
+  const value = String(scale || "day").toLowerCase();
+  if (value === "hours" || value === "hour") return "day";
+  if (value === "week") return "week";
+  if (value === "month") return "month";
+  return "day";
+}
+
 function todayDateText() {
-  const d = new Date();
-  const year = d.getFullYear();
-  const month = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
+  const d = new Date(Date.now() + NEPAL_OFFSET_MS);
+  const year = d.getUTCFullYear();
+  const month = String(d.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(d.getUTCDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
+}
+
+function isTargetReportUrl(urlText) {
+  try {
+    const url = new URL(urlText);
+    return url.hostname === "gnop.nebula.gogoro.com" && url.pathname.startsWith("/report/gs-statistic/swap-summary/");
+  } catch (_error) {
+    return false;
+  }
 }
 
 function parseReportUrl(urlText) {
@@ -60,21 +88,35 @@ function epochToDateText(value) {
     return "";
   }
   const ms = numeric > 1e12 ? numeric : numeric * 1000;
-  const date = new Date(ms);
+  const date = new Date(ms + NEPAL_OFFSET_MS);
   if (Number.isNaN(date.getTime())) {
     return "";
   }
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(date.getUTCDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
+}
+
+function normalizeReportDate(value, fallback) {
+  const text = String(value || "").trim();
+  if (/^\d{10,13}$/.test(text)) {
+    const converted = epochToDateText(text);
+    if (converted) {
+      return converted;
+    }
+  }
+  return String(fallback || text || "").trim();
 }
 
 async function getActiveReportContext() {
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
   const activeTab = tabs && tabs.length > 0 ? tabs[0] : null;
   const url = activeTab?.url || "";
-  return parseReportUrl(url);
+  return {
+    active: isTargetReportUrl(url),
+    ...parseReportUrl(url)
+  };
 }
 
 function setMode(mode) {
@@ -82,14 +124,12 @@ function setMode(mode) {
   const customBtn = document.getElementById("customModeBtn");
   const presetPanel = document.getElementById("presetPanel");
   const customPanel = document.getElementById("customPanel");
-  const timeScale = document.getElementById("timeScale");
 
   if (mode === "custom") {
     presetBtn?.classList.remove("active");
     customBtn?.classList.add("active");
     presetPanel?.classList.add("hidden");
     customPanel?.classList.remove("hidden");
-    if (timeScale) timeScale.value = "day";
   } else {
     presetBtn?.classList.add("active");
     customBtn?.classList.remove("active");
@@ -112,11 +152,20 @@ function setProgress(stage, percent, message) {
 
 function setBusy(busy) {
   exportInProgress = busy;
+  updateWorkspaceUiState();
+}
+
+function updateWorkspaceUiState() {
   const btn = document.getElementById("downloadWorkbookBtn");
-  if (btn) {
-    btn.disabled = busy;
-    btn.textContent = busy ? "Generating workbook..." : "Download Excel workbook";
+  if (!btn) {
+    return;
   }
+  btn.disabled = exportInProgress || !workspaceActive;
+  btn.textContent = !workspaceActive
+    ? "Open GNOP report page first"
+    : exportInProgress
+      ? "Generating workbook..."
+      : "Download Excel workbook";
 }
 
 function nextFrame() {
@@ -141,22 +190,24 @@ async function refreshStatus() {
     toggleBtn.textContent = status.enabled ? "Pause capture" : "Resume capture";
   }
 
-  if (status.latestPageMeta?.timezone) {
-    setValue("timezoneHeader", status.latestPageMeta.timezone === "Asia/Katmandu" ? "+05:45" : getValue("timezoneHeader") || DEFAULT_TIMEZONE);
-  }
+  setValue("timezoneHeader", DEFAULT_TIMEZONE);
+  updateWorkspaceUiState();
 }
 
 async function preloadRangeFromActiveTab() {
   const ctx = await getActiveReportContext();
-  if (ctx.timeScale) {
-    setValue("timeScale", ctx.timeScale);
+  workspaceActive = Boolean(ctx.active);
+  if (workspaceActive) {
+    if (ctx.fromDate) {
+      setValue("startDate", epochToDateText(ctx.fromDate));
+    }
+    if (ctx.endDate) {
+      setValue("endDate", epochToDateText(ctx.endDate));
+    }
+  } else {
+    setText("captureState", "Open the GNOP swap-summary page to enable export");
   }
-  if (ctx.fromDate) {
-    setValue("startDate", epochToDateText(ctx.fromDate));
-  }
-  if (ctx.endDate) {
-    setValue("endDate", epochToDateText(ctx.endDate));
-  }
+  updateWorkspaceUiState();
 }
 
 async function handleProgressMessage(message) {
@@ -205,16 +256,19 @@ async function downloadWorkbook() {
     return;
   }
 
-  const timeScale = getValue("timeScale");
   const mode = document.getElementById("customPanel")?.classList.contains("hidden") ? "preset" : "custom";
   const startDate = getValue("startDate");
   const endDate = getValue("endDate");
-  const timezoneHeader = getValue("timezoneHeader") || DEFAULT_TIMEZONE;
+  const timezoneHeader = DEFAULT_TIMEZONE;
 
   const activeContext = await getActiveReportContext();
-  const selectedTimeScale = mode === "custom" ? "custom" : (timeScale || activeContext.timeScale || "day");
-  const reportFromDate = mode === "custom" ? startDate : (activeContext.fromDate || startDate);
-  const reportEndDate = mode === "custom" ? endDate : (activeContext.endDate || endDate);
+  if (!activeContext.active) {
+    throw new Error("Open the GNOP swap-summary page first");
+  }
+
+  const selectedTimeScale = mode === "custom" ? "custom" : normalizePresetScale(selectedPresetScale || activeContext.timeScale || "day");
+  const reportFromDate = mode === "custom" ? startDate : normalizeReportDate(activeContext.fromDate, startDate);
+  const reportEndDate = mode === "custom" ? endDate : normalizeReportDate(activeContext.endDate, endDate);
   setBusy(true);
   setProgress("starting", 1, "Starting export");
 
@@ -282,10 +336,17 @@ function wireEvents() {
     downloadWorkbook().catch((error) => setText("captureState", `error: ${String(error.message || error)}`));
   });
 
-  document.getElementById("timeScale")?.addEventListener("change", () => {
-    if (document.getElementById("customPanel")?.classList.contains("hidden")) {
-      setMode("preset");
+  document.getElementById("timeScaleGroup")?.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) {
+      return;
     }
+    const scale = target.dataset?.scale;
+    if (!scale) {
+      return;
+    }
+    setPresetScale(scale);
+    setMode("preset");
   });
 
   document.getElementById("presetModeBtn")?.addEventListener("click", () => setMode("preset"));
@@ -298,11 +359,12 @@ function wireEvents() {
 
 function initDefaults() {
   setMode("preset");
-  setValue("timeScale", "day");
+  setPresetScale("month");
   setValue("startDate", todayDateText());
   setValue("endDate", todayDateText());
   setValue("timezoneHeader", DEFAULT_TIMEZONE);
   setProgress("idle", 0, "Idle");
+  updateWorkspaceUiState();
 }
 
 initDefaults();

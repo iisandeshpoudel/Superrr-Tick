@@ -3,6 +3,8 @@
   const COMPANY_ID = "6MyzkQeJ";
   const DEFAULT_PER_PAGE = 10;
   const DEFAULT_TIMEZONE_HEADER = "+05:45";
+  const NEPAL_TIMEZONE_OFFSET_MINUTES = 5 * 60 + 45;
+  const NEPAL_TIMEZONE_OFFSET_MS = NEPAL_TIMEZONE_OFFSET_MINUTES * 60 * 1000;
 
   const BASE_HEADERS = {
     accept: "application/json, text/plain, */*",
@@ -48,6 +50,41 @@
     return { year, month, day };
   }
 
+  function normalizeDateText(value) {
+    if (value == null || value === "") {
+      throw new Error(`Invalid date: ${String(value)}`);
+    }
+
+    const text = String(value).trim();
+    if (/^\d{10,13}$/.test(text)) {
+      const numeric = Number(text);
+      const ms = text.length >= 13 ? numeric : numeric * 1000;
+      const date = new Date(ms + NEPAL_TIMEZONE_OFFSET_MS);
+      if (Number.isNaN(date.getTime())) {
+        throw new Error(`Invalid date: ${String(value)}`);
+      }
+      const year = date.getUTCFullYear();
+      const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+      const day = String(date.getUTCDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    if (/^\d{4}-\d{2}-\d{2}$/.test(text)) {
+      return text;
+    }
+
+    const parsed = new Date(text);
+    if (!Number.isNaN(parsed.getTime())) {
+      const date = new Date(parsed.getTime() + NEPAL_TIMEZONE_OFFSET_MS);
+      const year = date.getUTCFullYear();
+      const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+      const day = String(date.getUTCDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    throw new Error(`Invalid date: ${String(value)}`);
+  }
+
   function parseRangeBoundary(value, endOfDay = false) {
     if (value == null || value === "") {
       throw new Error(`Invalid date: ${String(value)}`);
@@ -77,7 +114,7 @@
 
   function localEpochSeconds(dateText, endOfDay = false) {
     const { year, month, day } = parseDateOnly(dateText);
-    const date = new Date(
+    const utcMs = Date.UTC(
       year,
       month - 1,
       day,
@@ -86,33 +123,21 @@
       endOfDay ? 59 : 0,
       endOfDay ? 999 : 0
     );
-    return Math.floor(date.getTime() / 1000);
+    return Math.floor((utcMs - NEPAL_TIMEZONE_OFFSET_MS) / 1000);
   }
 
-  function addBucketDate(baseDate, timeScale, index) {
-    const date = new Date(baseDate.getTime());
-    if (timeScale === "hours") {
-      date.setHours(date.getHours() + index);
-      return date;
-    }
-    if (timeScale === "week") {
-      date.setDate(date.getDate() + index * 7);
-      return date;
-    }
-    if (timeScale === "month") {
-      date.setMonth(date.getMonth() + index);
-      return date;
-    }
-    date.setDate(date.getDate() + index);
-    return date;
+  function addBucketEpoch(baseEpochSeconds, timeScale, index) {
+    const bucketSeconds = timeScale === "hours" ? 3600 : 86400;
+    return baseEpochSeconds + bucketSeconds * index;
   }
 
-  function formatBucketDate(date, timeScale) {
-    const y = date.getFullYear();
-    const m = String(date.getMonth() + 1).padStart(2, "0");
-    const d = String(date.getDate()).padStart(2, "0");
+  function formatBucketDate(epochSeconds, timeScale) {
+    const date = new Date(epochSeconds * 1000 + NEPAL_TIMEZONE_OFFSET_MS);
+    const y = date.getUTCFullYear();
+    const m = String(date.getUTCMonth() + 1).padStart(2, "0");
+    const d = String(date.getUTCDate()).padStart(2, "0");
     if (timeScale === "hours") {
-      const h = String(date.getHours()).padStart(2, "0");
+      const h = String(date.getUTCHours()).padStart(2, "0");
       return `${y}-${m}-${d} ${h}:00`;
     }
     return `${y}-${m}-${d}`;
@@ -268,7 +293,7 @@
     return out;
   }
 
-  function buildSheetRows({ countJson, summaryJson, startDate, timeScale }) {
+  function buildSheetRows({ countJson, summaryJson, startEpoch, timeScale }) {
     const countSeries = Array.isArray(countJson?.series) ? countJson.series : [];
     const summarySeries = Array.isArray(summaryJson?.series) ? summaryJson.series : [];
     const swapCount = sumSeriesValues(countSeries, "swapCount");
@@ -287,9 +312,9 @@
 
     const rows = [];
     for (let i = 0; i < rowCount; i += 1) {
-      const bucketDate = addBucketDate(startDate, timeScale, i);
+      const bucketEpoch = addBucketEpoch(startEpoch, timeScale, i);
       rows.push({
-        date: formatBucketDate(bucketDate, timeScale),
+        date: formatBucketDate(bucketEpoch, timeScale),
         swapCount: swapCount[i] ?? null,
         socBelowNinetyCount: socBelowNinetyCount[i] ?? null,
         socBelowEightyFiveCount: socBelowEightyFiveCount[i] ?? null,
@@ -319,7 +344,7 @@
 
   async function buildWorkbookModel(settings) {
     const selectedMode = String(settings?.timeScale || "day");
-    const timeScale = selectedMode === "custom" || selectedMode === "month" ? "day" : selectedMode;
+    const timeScale = "day";
     const startDateText = settings?.startDate;
     const endDateText = settings?.endDate;
     const timezoneHeader = settings?.timezoneHeader || DEFAULT_TIMEZONE_HEADER;
@@ -329,9 +354,32 @@
       throw new Error("Start date and end date are required");
     }
 
+    function shiftDateText(dateText, deltaDays) {
+      const [year, month, day] = parseDateOnly(normalizeDateText(dateText));
+      const utc = Date.UTC(year, month - 1, day);
+      const shifted = new Date(utc + deltaDays * 86400000);
+      const y = shifted.getUTCFullYear();
+      const m = String(shifted.getUTCMonth() + 1).padStart(2, "0");
+      const d = String(shifted.getUTCDate()).padStart(2, "0");
+      return `${y}-${m}-${d}`;
+    }
+
+    let effectiveStartDateText = startDateText;
+    let effectiveEndDateText = endDateText;
+    if (selectedMode === "day") {
+      effectiveStartDateText = endDateText;
+      effectiveEndDateText = endDateText;
+    } else if (selectedMode === "week") {
+      effectiveStartDateText = shiftDateText(endDateText, -6);
+      effectiveEndDateText = endDateText;
+    } else if (selectedMode === "month") {
+      effectiveStartDateText = shiftDateText(endDateText, -29);
+      effectiveEndDateText = endDateText;
+    }
+
     await onProgress({ stage: "loading-sites", percent: 5, message: "Loading site list" });
-    const startEpoch = parseRangeBoundary(startDateText, false);
-    const endEpoch = parseRangeBoundary(endDateText, true);
+    const startEpoch = parseRangeBoundary(effectiveStartDateText, false);
+    const endEpoch = parseRangeBoundary(effectiveEndDateText, true);
     if (startEpoch > endEpoch) {
       throw new Error("Start date must be before end date");
     }
@@ -341,8 +389,6 @@
     const sheets = [];
     const warnings = [];
     const usedNames = new Set();
-    const startDate = new Date(startEpoch * 1000);
-
     await onProgress({ stage: "fetch-total", percent: 18, message: "Fetching total summary" });
     const totalCountJson = await fetchReport(
       "swap-count",
@@ -359,7 +405,7 @@
     sheets.push(
       createSheet(
         sanitizeSheetName("Total", usedNames, "Total"),
-        buildSheetRows({ countJson: totalCountJson, summaryJson: totalSummaryJson, startDate, timeScale }),
+        buildSheetRows({ countJson: totalCountJson, summaryJson: totalSummaryJson, startEpoch, timeScale }),
         { kind: "total" }
       )
     );
@@ -395,7 +441,7 @@
         sheets.push(
           createSheet(
             sanitizeSheetName(siteName, usedNames, siteId),
-            buildSheetRows({ countJson, summaryJson, startDate, timeScale }),
+            buildSheetRows({ countJson, summaryJson, startEpoch, timeScale }),
             { kind: "site" }
           )
         );
@@ -435,8 +481,10 @@
       generatedAt: new Date().toISOString(),
       timeScale: selectedMode,
       apiTimeScale: timeScale,
-      startDate: startDateText,
-      endDate: endDateText,
+      uiTimeZone: "Asia/Kathmandu",
+      timezoneHeader,
+      startDate: effectiveStartDateText,
+      endDate: effectiveEndDateText,
       siteCount: sites.length,
       sheetCount: sheets.length,
       warnings,

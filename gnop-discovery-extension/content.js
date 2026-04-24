@@ -2,6 +2,19 @@
   const INPAGE_SOURCE = "GNOP_DISCOVERY_INPAGE";
   const PAGE_META_SOURCE = "GNOP_DISCOVERY_PAGE_META";
 
+  function isTargetReportPage() {
+    try {
+      const url = new URL(location.href);
+      return url.hostname === "gnop.nebula.gogoro.com" && url.pathname.startsWith("/report/gs-statistic/swap-summary/");
+    } catch (_error) {
+      return false;
+    }
+  }
+
+  if (!isTargetReportPage()) {
+    return;
+  }
+
   function injectInpageScript() {
     const script = document.createElement("script");
     script.src = chrome.runtime.getURL("inpage.js");

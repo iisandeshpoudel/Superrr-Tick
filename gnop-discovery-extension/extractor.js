@@ -34,7 +34,7 @@ function formatDateParts(epochSeconds, timeZone) {
 }
 
 function formatBucketLabel(epochSeconds, bucketSeconds, timeScale, timeZone) {
-  const parts = formatDateParts(epochSeconds + bucketSeconds, timeZone);
+  const parts = formatDateParts(epochSeconds, timeZone);
   if (timeScale === "hours") {
     return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:00`;
   }

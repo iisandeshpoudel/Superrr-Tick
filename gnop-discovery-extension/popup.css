@@ -102,7 +102,7 @@ header p {
   background: var(--panel);
   border: 3px solid var(--border);
   border-radius: 0;
-  padding: 14px 12px 12px;
+  padding: 16px 14px 14px;
   box-shadow: 4px 4px 0 var(--shadow);
 }
 
@@ -171,6 +171,11 @@ header p {
   font-weight: 600;
 }
 
+.hint.compact {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
 .hidden {
   display: none;
 }
@@ -179,6 +184,7 @@ header p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
+  margin-bottom: 10px;
 }
 
 .mode-btn,
@@ -187,7 +193,7 @@ button {
   background: #f2d04f;
   color: var(--text);
   border-radius: 0;
-  padding: 10px 12px;
+  padding: 11px 12px;
   font-size: 12px;
   cursor: pointer;
   letter-spacing: 0.03em;
@@ -243,6 +249,37 @@ button.primary {
   gap: 8px;
 }
 
+.preset-group {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.scale-btn {
+  background: #f3efe4;
+  color: var(--text);
+  min-height: 42px;
+}
+
+.scale-btn.active {
+  background: var(--accent-2);
+}
+
+.scale-btn:hover:not(:disabled) {
+  transform: translate(1px, 1px);
+}
+
+.timezone-field {
+  margin-top: 10px;
+}
+
+.field-note {
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
 label {
   display: grid;
   gap: 6px;
@@ -257,12 +294,17 @@ input,
 select {
   border: 3px solid var(--border);
   border-radius: 0;
-  padding: 8px 10px;
+  padding: 9px 12px;
   font: inherit;
   background: #ffffff;
   color: var(--text);
   outline: none;
   box-shadow: 3px 3px 0 var(--shadow);
+}
+
+input[readonly] {
+  background: #f7f7f7;
+  cursor: default;
 }
 
 input::placeholder {
@@ -283,6 +325,20 @@ select {
   background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
   padding-right: 30px;
+  background-color: #ffffff;
+  box-shadow: 3px 3px 0 var(--shadow), inset 0 0 0 1px rgba(17, 17, 17, 0.04);
+}
+
+select:hover,
+input:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+select:focus,
+input:focus {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--shadow), 0 0 0 2px rgba(17, 17, 17, 0.08);
 }
 
 .progress-panel {
@@ -329,6 +385,7 @@ select {
   display: grid;
   gap: 6px;
   font-size: 12px;
+  padding-top: 18px;
 }
 
 .status > div {
@@ -364,7 +421,7 @@ select {
   color: var(--text);
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  background: var(--accent-2);
+  background: #f0e3c1;
   display: inline-block;
   padding: 2px 6px;
   border: 3px solid var(--border);
@@ -382,7 +439,7 @@ pre {
   background: #ffffff;
   border: 3px solid var(--border);
   border-radius: 0;
-  padding: 10px;
+  padding: 12px;
   max-height: 160px;
   overflow: auto;
   box-shadow: 3px 3px 0 var(--shadow);
@@ -428,6 +485,21 @@ details > summary::-webkit-details-marker {
   content: ">";
   color: var(--accent-3);
   font-family: ui-monospace, Consolas, monospace;
+}
+
+.debug-panel summary {
+  padding: 2px 0 4px;
+}
+
+.debug-panel summary::after {
+  content: "toggle";
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--muted);
+  background: #f3efe4;
+  border: 2px solid var(--border);
+  padding: 1px 6px;
+  box-shadow: 2px 2px 0 var(--shadow);
 }
 
 .debug-panel[open] summary::before {
