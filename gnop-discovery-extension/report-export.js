@@ -355,7 +355,7 @@
     }
 
     function shiftDateText(dateText, deltaDays) {
-      const [year, month, day] = parseDateOnly(normalizeDateText(dateText));
+      const { year, month, day } = parseDateOnly(normalizeDateText(dateText));
       const utc = Date.UTC(year, month - 1, day);
       const shifted = new Date(utc + deltaDays * 86400000);
       const y = shifted.getUTCFullYear();

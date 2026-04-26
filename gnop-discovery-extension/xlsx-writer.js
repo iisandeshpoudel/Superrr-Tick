@@ -180,9 +180,9 @@
     }
   }
 
-  function dataStyleForCell(value) {
-    return typeof value === "number" && Number.isFinite(value) ? 1 : 0;
-  }
+   function dataStyleForCell(columnKey) {
+     return 9; // xf9: all data cells (fillId9 very light blue, normal text)
+   }
 
   function buildWorksheetXml(sheet, isSelected = false) {
     const columns = sheet.columns || [];
@@ -203,7 +203,7 @@
       const isHeader = rowIndex === 0;
       const cells = columns.map((column, columnIndex) => {
         const reference = buildCellRef(columnIndex, rowIndex);
-        const styleIndex = isHeader ? headerStyleForColumn(column.key) : dataStyleForCell(row[column.key]);
+        const styleIndex = isHeader ? headerStyleForColumn(column.key) : dataStyleForCell(column.key);
         return xmlCellWithStyle(reference, row[column.key], styleIndex);
       });
       const rowHeight = isHeader ? 24 : 20;
@@ -212,7 +212,7 @@ ${cells.join("\n")}
   </row>`;
     });
 
-    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">\n  <sheetFormatPr defaultRowHeight="20" customHeight="1"/>\n${buildSheetViewXml(isSelected)}\n${buildColXml(columns)}\n  <sheetData>\n${rowXml.join("\n")}\n  </sheetData>\n</worksheet>`;
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">\n${buildSheetViewXml(isSelected)}\n  <sheetFormatPr defaultRowHeight="20" customHeight="1"/>\n${buildColXml(columns)}\n  <sheetData>\n${rowXml.join("\n")}\n  </sheetData>\n</worksheet>`;
   }
 
   function buildWorkbookXml(sheets) {
@@ -255,67 +255,80 @@ ${cells.join("\n")}
 <styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
   <fonts count="3">
     <font>
-      <sz val="11"/>
-      <color rgb="FF111111"/>
-      <name val="Calibri"/>
-      <family val="2"/>
+      <sz val="11"/><color rgb="FF222222"/><name val="Calibri"/><family val="2"/>
     </font>
     <font>
-      <sz val="11"/>
-      <color rgb="FFFFFFFF"/>
-      <name val="Calibri"/>
-      <family val="2"/>
-      <b/>
+      <sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/><family val="2"/><b/>
     </font>
     <font>
-      <sz val="11"/>
-      <color rgb="FF111111"/>
-      <name val="Calibri"/>
-      <family val="2"/>
-      <b/>
+      <sz val="11"/><color rgb="FF222222"/><name val="Calibri"/><family val="2"/><b/>
     </font>
   </fonts>
-  <fills count="9">
+  <fills count="10">
     <fill><patternFill patternType="none"/></fill>
     <fill><patternFill patternType="gray125"/></fill>
-    <fill><patternFill patternType="solid"><fgColor rgb="FFFFFFFF"/><bgColor indexed="64"/></patternFill></fill>
-    <fill><patternFill patternType="solid"><fgColor rgb="FF2358FF"/><bgColor indexed="64"/></patternFill></fill>
-    <fill><patternFill patternType="solid"><fgColor rgb="FFDCE8F8"/><bgColor indexed="64"/></patternFill></fill>
-    <fill><patternFill patternType="solid"><fgColor rgb="FFF4D9D4"/><bgColor indexed="64"/></patternFill></fill>
-    <fill><patternFill patternType="solid"><fgColor rgb="FFE6EFE6"/><bgColor indexed="64"/></patternFill></fill>
-    <fill><patternFill patternType="solid"><fgColor rgb="FFE6E0FB"/><bgColor indexed="64"/></patternFill></fill>
-    <fill><patternFill patternType="solid"><fgColor rgb="FFF5E1A4"/><bgColor indexed="64"/></patternFill></fill>
+    <!-- fillId 2-7: HEADER fills (medium pastel) -->
+    <fill><patternFill patternType="solid"><fgColor rgb="FFFFD580"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFFFB3B3"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFAABFFF"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFCFAAFF"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFAAE8AA"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FF80D8D8"/><bgColor indexed="64"/></patternFill></fill>
+    <!-- fillId 8-9: DATA fills (very light pastel, clearly distinct from headers) -->
+    <fill><patternFill patternType="solid"><fgColor rgb="FFFDE8E8"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFE8F0FD"/><bgColor indexed="64"/></patternFill></fill>
   </fills>
   <borders count="2">
     <border><left/><right/><top/><bottom/><diagonal/></border>
-    <border><left style="thin"><color rgb="FF111111"/></left><right style="thin"><color rgb="FF111111"/></right><top style="thin"><color rgb="FF111111"/></top><bottom style="thin"><color rgb="FF111111"/></bottom><diagonal/></border>
+    <border>
+      <left style="thin"><color rgb="FFCCCCCC"/></left>
+      <right style="thin"><color rgb="FFCCCCCC"/></right>
+      <top style="thin"><color rgb="FFCCCCCC"/></top>
+      <bottom style="thin"><color rgb="FFCCCCCC"/></bottom>
+      <diagonal/>
+    </border>
   </borders>
   <cellStyleXfs count="1">
     <xf numFmtId="0" fontId="0" fillId="0" borderId="0"/>
   </cellStyleXfs>
-  <cellXfs count="8">
-    <xf numFmtId="0" fontId="0" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
-      <alignment horizontal="left" vertical="center"/>
-    </xf>
-    <xf numFmtId="0" fontId="0" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
-      <alignment horizontal="right" vertical="center"/>
-    </xf>
-    <xf numFmtId="0" fontId="1" fillId="3" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+  <cellXfs count="10">
+    <!-- xf0, xf1: unused base styles -->
+    <xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <xf numFmtId="0" fontId="0" fillId="4" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+    <xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <xf numFmtId="0" fontId="0" fillId="5" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+    <!-- xf2: date header → amber (fillId2), bold dark -->
+    <xf numFmtId="0" fontId="2" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <xf numFmtId="0" fontId="0" fillId="6" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+    <!-- xf3: swapCount header → coral rose (fillId3), bold dark -->
+    <xf numFmtId="0" fontId="2" fillId="3" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <xf numFmtId="0" fontId="0" fillId="7" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+    <!-- xf4: SOC<90% header → periwinkle (fillId4), bold dark -->
+    <xf numFmtId="0" fontId="2" fillId="4" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
+    <!-- xf5: SOC<85% header → lavender (fillId5), bold dark -->
+    <xf numFmtId="0" fontId="2" fillId="5" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+      <alignment horizontal="center" vertical="center"/>
+    </xf>
+    <!-- xf6: SOC<80% header → sage green (fillId6), bold dark -->
+    <xf numFmtId="0" fontId="2" fillId="6" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+      <alignment horizontal="center" vertical="center"/>
+    </xf>
+    <!-- xf7: totalAh header → teal (fillId7), bold dark -->
+    <xf numFmtId="0" fontId="2" fillId="7" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+      <alignment horizontal="center" vertical="center"/>
+    </xf>
+    <!-- xf8: swapCount DATA → very light pink (fillId8), normal -->
     <xf numFmtId="0" fontId="0" fillId="8" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+      <alignment horizontal="center" vertical="center"/>
+    </xf>
+    <!-- xf9: other DATA → very light blue (fillId9), normal -->
+    <xf numFmtId="0" fontId="0" fillId="9" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
   </cellXfs>
@@ -339,73 +352,86 @@ ${cells.join("\n")}
     return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">\n  <Application>Microsoft Excel</Application>\n  <DocSecurity>0</DocSecurity>\n  <ScaleCrop>false</ScaleCrop>\n  <HeadingPairs>\n    <vt:vector size="2" baseType="variant">\n      <vt:variant><vt:lpstr>Worksheets</vt:lpstr></vt:variant>\n      <vt:variant><vt:i4>${sheets.length}</vt:i4></vt:variant>\n    </vt:vector>\n  </HeadingPairs>\n  <TitlesOfParts>\n    <vt:vector size="${sheets.length}" baseType="lpstr">${namesXml}</vt:vector>\n  </TitlesOfParts>\n  <Company></Company>\n  <LinksUpToDate>false</LinksUpToDate>\n  <SharedDoc>false</SharedDoc>\n  <HyperlinksChanged>false</HyperlinksChanged>\n  <AppVersion>16.0300</AppVersion>\n</Properties>`;
   }
 
-  function buildZip(entries) {
-    const fileParts = [];
-    const centralParts = [];
-    let offset = 0;
+   function dosDateTime(date) {
+     const d = date || new Date();
+     const year = d.getUTCFullYear() - 1980;
+     const month = d.getUTCMonth() + 1;
+     const day = d.getUTCDate();
+     const hours = d.getUTCHours();
+     const minutes = d.getUTCMinutes();
+     const seconds = Math.floor(d.getUTCSeconds() / 2);
+     const dateVal = ((year & 0x7f) << 9) | ((month & 0x0f) << 5) | (day & 0x1f);
+     const timeVal = ((hours & 0x1f) << 11) | ((minutes & 0x3f) << 5) | (seconds & 0x1f);
+     return [timeVal & 0xff, (timeVal >>> 8) & 0xff, dateVal & 0xff, (dateVal >>> 8) & 0xff];
+   }
 
-    for (const entry of entries) {
-      const nameBytes = utf8Bytes(entry.name);
-      const dataBytes = toBytes(entry.data);
-      const crc = crc32(dataBytes);
-      const localHeader = concatBytes([
-        Uint8Array.from(u32(ZIP_LOCAL_FILE_HEADER)),
-        Uint8Array.from(u16(20)),
-        Uint8Array.from(u16(0)),
-        Uint8Array.from(u16(0)),
-        Uint8Array.from(u16(0)),
-        Uint8Array.from(u16(0)),
-        Uint8Array.from(u32(crc)),
-        Uint8Array.from(u32(dataBytes.length)),
-        Uint8Array.from(u32(dataBytes.length)),
-        Uint8Array.from(u16(nameBytes.length)),
-        Uint8Array.from(u16(0)),
-        nameBytes,
-        dataBytes
-      ]);
+   function buildZip(entries) {
+     const fileParts = [];
+     const centralParts = [];
+     let offset = 0;
 
-      fileParts.push(localHeader);
+     for (const entry of entries) {
+       const nameBytes = utf8Bytes(entry.name);
+       const dataBytes = toBytes(entry.data);
+       const crc = crc32(dataBytes);
+       const timeDate = dosDateTime(new Date());
 
-      const centralHeader = concatBytes([
-        Uint8Array.from(u32(ZIP_CENTRAL_DIR_HEADER)),
-        Uint8Array.from(u16(20)),
-        Uint8Array.from(u16(20)),
-        Uint8Array.from(u16(0)),
-        Uint8Array.from(u16(0)),
-        Uint8Array.from(u16(0)),
-        Uint8Array.from(u16(0)),
-        Uint8Array.from(u32(crc)),
-        Uint8Array.from(u32(dataBytes.length)),
-        Uint8Array.from(u32(dataBytes.length)),
-        Uint8Array.from(u16(nameBytes.length)),
-        Uint8Array.from(u16(0)),
-        Uint8Array.from(u16(0)),
-        Uint8Array.from(u16(0)),
-        Uint8Array.from(u16(0)),
-        Uint8Array.from(u32(0)),
-        Uint8Array.from(u32(offset)),
-        nameBytes
-      ]);
+       const localHeader = concatBytes([
+         Uint8Array.from(u32(ZIP_LOCAL_FILE_HEADER)),
+         Uint8Array.from(u16(20)),
+         Uint8Array.from(u16(0)),
+         Uint8Array.from(u16(0)),
+         Uint8Array.from(timeDate),
+         Uint8Array.from(u32(crc)),
+         Uint8Array.from(u32(dataBytes.length)),
+         Uint8Array.from(u32(dataBytes.length)),
+         Uint8Array.from(u16(nameBytes.length)),
+         Uint8Array.from(u16(0)),
+         nameBytes,
+         dataBytes
+       ]);
 
-      centralParts.push(centralHeader);
-      offset += localHeader.length;
+       fileParts.push(localHeader);
+
+        const centralHeader = concatBytes([
+          Uint8Array.from(u32(ZIP_CENTRAL_DIR_HEADER)),
+          Uint8Array.from(u16(20)),
+          Uint8Array.from(u16(20)),
+          Uint8Array.from(u16(0)),
+          Uint8Array.from(u16(0)),
+          Uint8Array.from(timeDate),
+          Uint8Array.from(u32(crc)),
+          Uint8Array.from(u32(dataBytes.length)),
+          Uint8Array.from(u32(dataBytes.length)),
+          Uint8Array.from(u16(nameBytes.length)),
+          Uint8Array.from(u16(0)),
+          Uint8Array.from(u16(0)),
+          Uint8Array.from(u16(0)),
+          Uint8Array.from(u16(0)),
+  Uint8Array.from(u32(0x20)),
+          Uint8Array.from(u32(offset)),
+          nameBytes
+        ]);
+
+       centralParts.push(centralHeader);
+       offset += localHeader.length;
+     }
+
+     const centralDir = concatBytes(centralParts);
+     const fileData = concatBytes(fileParts);
+     const endRecord = concatBytes([
+       Uint8Array.from(u32(ZIP_END_OF_CENTRAL_DIR)),
+       Uint8Array.from(u16(0)),
+       Uint8Array.from(u16(0)),
+       Uint8Array.from(u16(entries.length)),
+       Uint8Array.from(u16(entries.length)),
+       Uint8Array.from(u32(centralDir.length)),
+       Uint8Array.from(u32(fileData.length)),
+       Uint8Array.from(u16(0))
+     ]);
+
+      return concatBytes([fileData, centralDir, endRecord]);
     }
-
-    const centralDir = concatBytes(centralParts);
-    const fileData = concatBytes(fileParts);
-    const endRecord = concatBytes([
-      Uint8Array.from(u32(ZIP_END_OF_CENTRAL_DIR)),
-      Uint8Array.from(u16(0)),
-      Uint8Array.from(u16(0)),
-      Uint8Array.from(u16(entries.length)),
-      Uint8Array.from(u16(entries.length)),
-      Uint8Array.from(u32(centralDir.length)),
-      Uint8Array.from(u32(fileData.length)),
-      Uint8Array.from(u16(0))
-    ]);
-
-    return concatBytes([fileData, centralDir, endRecord]);
-  }
 
   function buildXlsxBlob({ sheets, creator, title, description, createdAt }) {
     const safeSheets = Array.isArray(sheets) ? sheets : [];
