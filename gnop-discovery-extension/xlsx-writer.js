@@ -147,7 +147,10 @@
   }
 
   function buildColXml(columns) {
-    const widths = columns.map((column) => Number(column?.width) || 12);
+    const widths = columns.map((column, index) => {
+      if (index === 0) return 16;
+      return Number(column?.width) || 12;
+    });
     const cols = widths.map((width, index) => {
       const min = index + 1;
       const max = index + 1;
@@ -181,7 +184,13 @@
   }
 
    function dataStyleForCell(columnKey) {
-     return 9; // xf9: all data cells (fillId9 very light blue, normal text)
+     if (columnKey === "totalAh") return 10; // xf10: totalAh, 1 decimal, fillId9
+     return 8; // xf8: counts (swapCount, socBelow*), integer, fillId9
+   }
+
+   function bandedDataStyleForCell(columnKey) {
+     if (columnKey === "totalAh") return 12; // xf12: banded totalAh, 1 decimal, fillId10
+     return 11; // xf11: banded counts, integer, fillId10
    }
 
   function buildWorksheetXml(sheet, isSelected = false) {
@@ -199,18 +208,24 @@
       allRows.push(row || {});
     }
 
-    const rowXml = allRows.map((row, rowIndex) => {
-      const isHeader = rowIndex === 0;
-      const cells = columns.map((column, columnIndex) => {
-        const reference = buildCellRef(columnIndex, rowIndex);
-        const styleIndex = isHeader ? headerStyleForColumn(column.key) : dataStyleForCell(column.key);
-        return xmlCellWithStyle(reference, row[column.key], styleIndex);
-      });
-      const rowHeight = isHeader ? 24 : 20;
-      return `  <row r="${rowIndex + 1}" ht="${rowHeight}" customHeight="1">
-${cells.join("\n")}
-  </row>`;
+  const rowXml = allRows.map((row, rowIndex) => {
+    const isHeader = rowIndex === 0;
+    const cells = columns.map((column, columnIndex) => {
+      const reference = buildCellRef(columnIndex, rowIndex);
+      let styleIndex;
+      if (isHeader) {
+        styleIndex = headerStyleForColumn(column.key);
+      } else {
+        const isBandedRow = rowIndex % 2 === 1;
+        styleIndex = isBandedRow ? bandedDataStyleForCell(column.key) : dataStyleForCell(column.key);
+      }
+      return xmlCellWithStyle(reference, row[column.key], styleIndex);
     });
+    const rowHeight = isHeader ? 24 : 20;
+    return `  <row r="${rowIndex + 1}" ht="${rowHeight}" customHeight="1">
+${cells.join("\n")}
+ </row>`;
+  });
 
     return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">\n${buildSheetViewXml(isSelected)}\n  <sheetFormatPr defaultRowHeight="20" customHeight="1"/>\n${buildColXml(columns)}\n  <sheetData>\n${rowXml.join("\n")}\n  </sheetData>\n</worksheet>`;
   }
@@ -253,30 +268,33 @@ ${cells.join("\n")}
   function buildStylesXmlV2() {
     return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+  <numFmts count="2">
+    <numFmt numFmtId="1" formatCode="0"/>
+    <numFmt numFmtId="2" formatCode="0.0"/>
+  </numFmts>
   <fonts count="3">
     <font>
-      <sz val="11"/><color rgb="FF222222"/><name val="Calibri"/><family val="2"/>
+      <sz val="11"/><color rgb="FF444444"/><name val="Segoe UI"/><family val="2"/>
     </font>
     <font>
-      <sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/><family val="2"/><b/>
+      <sz val="11"/><color rgb="FFFFFFFF"/><name val="Segoe UI"/><family val="2"/><b/>
     </font>
     <font>
-      <sz val="11"/><color rgb="FF222222"/><name val="Calibri"/><family val="2"/><b/>
+      <sz val="11"/><color rgb="FF444444"/><name val="Segoe UI"/><family val="2"/><b/>
     </font>
   </fonts>
-  <fills count="10">
+  <fills count="11">
     <fill><patternFill patternType="none"/></fill>
     <fill><patternFill patternType="gray125"/></fill>
-    <!-- fillId 2-7: HEADER fills (medium pastel) -->
     <fill><patternFill patternType="solid"><fgColor rgb="FFFFD580"/><bgColor indexed="64"/></patternFill></fill>
     <fill><patternFill patternType="solid"><fgColor rgb="FFFFB3B3"/><bgColor indexed="64"/></patternFill></fill>
     <fill><patternFill patternType="solid"><fgColor rgb="FFAABFFF"/><bgColor indexed="64"/></patternFill></fill>
     <fill><patternFill patternType="solid"><fgColor rgb="FFCFAAFF"/><bgColor indexed="64"/></patternFill></fill>
     <fill><patternFill patternType="solid"><fgColor rgb="FFAAE8AA"/><bgColor indexed="64"/></patternFill></fill>
     <fill><patternFill patternType="solid"><fgColor rgb="FF80D8D8"/><bgColor indexed="64"/></patternFill></fill>
-    <!-- fillId 8-9: DATA fills (very light pastel, clearly distinct from headers) -->
     <fill><patternFill patternType="solid"><fgColor rgb="FFFDE8E8"/><bgColor indexed="64"/></patternFill></fill>
     <fill><patternFill patternType="solid"><fgColor rgb="FFE8F0FD"/><bgColor indexed="64"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FFF5F5F5"/><bgColor indexed="64"/></patternFill></fill>
   </fills>
   <borders count="2">
     <border><left/><right/><top/><bottom/><diagonal/></border>
@@ -291,44 +309,44 @@ ${cells.join("\n")}
   <cellStyleXfs count="1">
     <xf numFmtId="0" fontId="0" fillId="0" borderId="0"/>
   </cellStyleXfs>
-  <cellXfs count="10">
-    <!-- xf0, xf1: unused base styles -->
+  <cellXfs count="13">
     <xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
     <xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <!-- xf2: date header → amber (fillId2), bold dark -->
     <xf numFmtId="0" fontId="2" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <!-- xf3: swapCount header → coral rose (fillId3), bold dark -->
     <xf numFmtId="0" fontId="2" fillId="3" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <!-- xf4: SOC<90% header → periwinkle (fillId4), bold dark -->
     <xf numFmtId="0" fontId="2" fillId="4" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <!-- xf5: SOC<85% header → lavender (fillId5), bold dark -->
     <xf numFmtId="0" fontId="2" fillId="5" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <!-- xf6: SOC<80% header → sage green (fillId6), bold dark -->
     <xf numFmtId="0" fontId="2" fillId="6" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <!-- xf7: totalAh header → teal (fillId7), bold dark -->
     <xf numFmtId="0" fontId="2" fillId="7" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <!-- xf8: swapCount DATA → very light pink (fillId8), normal -->
-    <xf numFmtId="0" fontId="0" fillId="8" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+    <xf numFmtId="1" fontId="0" fillId="9" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyNumberFormat="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
-    <!-- xf9: other DATA → very light blue (fillId9), normal -->
-    <xf numFmtId="0" fontId="0" fillId="9" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+    <xf numFmtId="1" fontId="0" fillId="9" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyNumberFormat="1" applyAlignment="1">
+      <alignment horizontal="center" vertical="center"/>
+    </xf>
+    <xf numFmtId="2" fontId="0" fillId="9" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyNumberFormat="1" applyAlignment="1">
+      <alignment horizontal="center" vertical="center"/>
+    </xf>
+    <xf numFmtId="1" fontId="0" fillId="10" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyNumberFormat="1" applyAlignment="1">
+      <alignment horizontal="center" vertical="center"/>
+    </xf>
+    <xf numFmtId="2" fontId="0" fillId="10" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyNumberFormat="1" applyAlignment="1">
       <alignment horizontal="center" vertical="center"/>
     </xf>
   </cellXfs>
