@@ -13,6 +13,9 @@
     language: "en-US"
   };
 
+  const EXCLUDED_SITE_IDS = new Set(["530b7nMO"]);
+  const EXCLUDED_SITE_NAMES = new Set(["bafal testing centre 2"]);
+
   const INVALID_SHEET_CHARS = /[\\/?*\[\]:]/g;
 
   function normalizeSheetBaseName(name) {
@@ -110,6 +113,18 @@
     }
 
     throw new Error(`Invalid date: ${String(value)}`);
+  }
+
+  function isExcludedSite(site) {
+    const siteId = String(site?.siteId || "").trim();
+    if (siteId && EXCLUDED_SITE_IDS.has(siteId)) {
+      return true;
+    }
+
+    const siteName = String(site?.siteName?.local || site?.siteName?.["en-US"] || site?.siteName || "")
+      .trim()
+      .toLowerCase();
+    return siteName ? EXCLUDED_SITE_NAMES.has(siteName) : false;
   }
 
   function localEpochSeconds(dateText, endOfDay = false) {
@@ -213,6 +228,10 @@
 
       for (const site of rows) {
         if (!site || typeof site !== "object" || !site.siteId) {
+          continue;
+        }
+        // Bafal Testing centre 2 is a test site, so keep it out of exports.
+        if (isExcludedSite(site)) {
           continue;
         }
         if (seen.has(site.siteId)) {
